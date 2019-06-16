@@ -1,17 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <title>Admin Panel | @yield('title')</title>
-    
-    <link rel="stylesheet" href="/datatables.net-bs/css/dataTables.bootstrap.min.css">
-    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/fontawesome/css/all.css">
-    <link rel="stylesheet" href="/css/admin/all.css">
-    <link rel="stylesheet" href="/css/admin/admin.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Attendance Portal | Arbre Creations</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+    <!-- Pignose Calender -->
+    <!-- <link href="/plugins/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet"> -->
+    <!-- Chartist -->
+    <link rel="stylesheet" href="/plugins/chartist/css/chartist.min.css">
+    <link rel="stylesheet" href="/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css">
+    <!-- Custom Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+
 </head>
-<body class="is-preload" data-page-id="@yield('data-page-id')">
+
+<body data-page-id="@yield('data-page-id')">
     
     <div id="wrapper">
 

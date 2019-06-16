@@ -13,7 +13,7 @@ elixir(function (mix) {
     mix.styles(
         [
             'css/app.css'
-            // ,'css/styles.css'            
+            ,'css/style.css'            
             
         ],'public/css/all.css',//output file
         'resources/assets' //source dir
@@ -32,7 +32,7 @@ elixir(function (mix) {
             //other dependencies
             // bowerPath+'/axios/dist/axios.min.js',
             
-            'js/cf.js',
+            'js/app.js',
             'js/app/*.js',
 //            
             'js/init.js'
