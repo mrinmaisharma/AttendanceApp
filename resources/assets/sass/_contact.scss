@@ -1,0 +1,118 @@
+section.contact-us {
+//    background-color: #191919;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    
+    .overlay {
+        padding: 6rem 0 4rem 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(25, 25, 25, 0.5);
+    }
+    
+    ul{
+        list-style: none;
+        padding:0;
+        color: #fafafa;
+        li {
+            padding-bottom: 1rem;
+        }
+    }
+    
+    iframe {
+        border: none !important;
+    }
+
+    .contact-pic {
+        margin-top: 4rem;
+    }
+
+    .contact-pic img {
+        max-width: 100%;
+    }
+    
+    .wrapper{
+        box-shadow: 9px 6px 22px 0 rgba(0, 0, 0, 0.3);
+    }
+
+    .wrapper > *{
+        padding: 1em;
+    }
+
+    .company-info{
+        background:#262626;//191919//1f1f1f//111
+    }
+
+    .company-info h3, .company-info ul{
+        text-align: center;
+        margin:0 0 1rem 0;
+    }
+
+    .contact{
+        background:#fafafa;
+    }
+
+    /* FORM STYLES */
+    .contact form{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap:20px;
+    }
+
+    .contact form label{
+        display:block;
+    }
+
+    .contact form p{
+        margin:0;
+    }
+
+    .contact form .full{
+        grid-column: 1 / 3;
+    }
+
+    .contact form button, .contact form input, .contact form textarea{
+        width:100%;
+        padding:1em;
+        border:1px solid #e9eaea;
+    }
+
+    .contact form button{
+        width: 100%;
+        font-size: 1.5rem;
+        background: #00a199;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        text-align: center;
+        text-transform: uppercase;
+        color: #fff;
+        font-weight: bold;
+        letter-spacing: 1px;
+        cursor: pointer;
+        margin: 1rem 0;
+        &:hover {
+            background-color: darken(#00a199, 5%);
+        }
+        &:focus {
+            background-color: darken(#00a199, 5%);
+        }
+    }
+
+    /* LARGE SCREENS */
+    @media(min-width:700px){
+        .wrapper{
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+        }
+
+        .wrapper > *{
+            padding:2em;
+        }
+
+        .company-info h3, .company-info ul, .available{
+            text-align: left;
+        }
+    }
+}
