@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Attendance Portal | "@yield('title')</title>
+    <title>Attendance Portal | "<?php echo $__env->yieldContent('title'); ?></title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-sm.ico">
     <!-- Pignose Calender -->
@@ -32,7 +32,7 @@
 
 </head>
 
-<body data-page-id="@yield('data-page-id')">
+<body data-page-id="<?php echo $__env->yieldContent('data-page-id'); ?>">
     
     <!--*******************
         Preloader start
@@ -53,13 +53,13 @@
     ***********************************-->
     <div id="main-wrapper">
 
-        @include('includes.app.navbar')
-        @include('includes.app.sidebar')
+        <?php echo $__env->make('includes.app.navbar', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        <?php echo $__env->make('includes.app.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
         <div class="content-body" style="min-height: 788px;">
         <!-- Main -->
-            @yield('content')
+            <?php echo $__env->yieldContent('content'); ?>
         </div>
-        @include('includes.app.footer')
+        <?php echo $__env->make('includes.app.footer', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
     </div>
     <!--**********************************

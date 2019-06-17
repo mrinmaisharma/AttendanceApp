@@ -1,7 +1,7 @@
 @if(isset($errors) && count($errors) || \App\Classes\Session::has('error'))
    <?php //var_dump($_SESSION['EMAIL_VERIFY_OTP']);exit; ?>
-    <div class="alert alert-danger alert-dismissible">
-        <a href="#" class="close" data-dismiss="alert" aria-label="close" style="font-size:1.6rem;color:#000">&times;</a>
+    <div class="alert alert-danger alert-dismissible fade show">
+        <button class="close" data-dismiss="alert" aria-label="close" style="font-size:1.6rem;color:#000">&times;</button>
         <strong>Error!</strong>
         @if(\App\Classes\Session::has('error'))
            <?php echo \App\Classes\Session::flash('error'); ?>
@@ -14,8 +14,8 @@
         @endif
     </div>
 @elseif(isset($success) || \App\Classes\Session::has('success'))
-    <div class="alert alert-success alert-dismissible">
-        <a href="#" class="close" data-dismiss="alert" aria-label="close" style="font-size:1.6rem;color:#000">&times;</a>
+<div class="alert alert-success alert-dismissible fade show">
+        <button class="close" data-dismiss="alert" aria-label="close" style="font-size:1.6rem;color:#000">&times;</button>
         <strong>Success!</strong>
         @if(isset($success))
            {{$success}}
