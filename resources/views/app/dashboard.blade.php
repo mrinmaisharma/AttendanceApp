@@ -1,6 +1,7 @@
 @extends('app.layout.base')
 @section('title', 'Dashboard')
 
+@section('data-page-id', 'dashboard')
 
 @section('content')
 

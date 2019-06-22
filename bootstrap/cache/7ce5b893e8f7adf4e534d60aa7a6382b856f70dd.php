@@ -1,5 +1,6 @@
 <?php $__env->startSection('title', 'Dashboard'); ?>
 
+<?php $__env->startSection('data-page-id', 'dashboard'); ?>
 
 <?php $__env->startSection('content'); ?>
 
@@ -33,7 +34,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Thought of the day</h5>
-                    <p class="card-text">
+                    <p class="card-text" id="quoteOfTheDay">
                     This is a wider card with supporting text and below as a natural lead-in to the additional content. 
                     This content is a little bit longer.
                     <br>
