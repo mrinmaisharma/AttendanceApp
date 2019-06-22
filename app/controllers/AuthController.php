@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Models\User;
+// use App\Models\User;
 use App\Classes\Request;
 use App\Classes\Redirect;
 use App\Classes\Session;
@@ -21,14 +21,14 @@ class AuthController extends BaseController
 //    }
 //    
     public function showLoginForm() {
-        if(isAuthenticated()) {
-            Redirect::to('/');
-        }
-        else {
-            return view('home/login');
-        }
+        // if(isAuthenticated()) {
+        //     Redirect::to('/');
+        // }
+        // else {
+            return view('auth/login');
+        // }
     }
-    
+    /*
     public function register() {
         if(Request::has('post')) {
             $request=Request::get('post');
@@ -427,7 +427,7 @@ class AuthController extends BaseController
         }
         return null;
     }
-    
+    */
 }
 
 ?>

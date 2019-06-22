@@ -10,7 +10,7 @@
         
         //switch pages
         switch ($("body").data("page-id")) {
-            case 'login':
+            case 'adminDashboard':
                 break;
             default:
                 //do nothing

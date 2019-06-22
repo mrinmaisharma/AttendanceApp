@@ -12,8 +12,8 @@ elixir(function (mix) {
     //combine css file
     mix.styles(
         [
-            'css/app.css'
-            ,'css/style.css'            
+            'css/app.css',
+            'css/style.css'            
             
         ],'public/css/all.css',//output file
         'resources/assets' //source dir
