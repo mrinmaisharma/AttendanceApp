@@ -10,7 +10,8 @@
         
         //switch pages
         switch ($("body").data("page-id")) {
-            case 'login':
+            case 'dashboard':
+                ATTD.global.quoteOfTheDay();
                 break;
             default:
                 //do nothing

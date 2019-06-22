@@ -8,6 +8,10 @@ jQuery(".form-valide").validate({
             required: !0,
             email: !0
         },
+        "val-old-password": {
+            required: !0,
+            minlength: 5
+        },
         "val-password": {
             required: !0,
             minlength: 5
@@ -64,6 +68,10 @@ jQuery(".form-valide").validate({
             minlength: "Your username must consist of at least 3 characters"
         },
         "val-email": "Please enter a valid email address",
+        "val-old-password": {
+            required: "Please provide a password",
+            minlength: "Your password must be at least 5 characters long"
+        },
         "val-password": {
             required: "Please provide a password",
             minlength: "Your password must be at least 5 characters long"

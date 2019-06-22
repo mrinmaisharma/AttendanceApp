@@ -1,5 +1,8 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700|Proza+Libre:400,700|Raleway:400,700|PT+Sans+Narrow:400,700);
 
+html {
+  height: 100%; }
+
 @charset "UTF-8";
 /*
 0 - 600: Phone

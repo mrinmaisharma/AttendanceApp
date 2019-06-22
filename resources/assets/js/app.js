@@ -1,7 +1,7 @@
 (function() {
     'use strict';
     
-    window.CONSOLEFLARE={
+    window.ATTD={
         global: {}
     };
 })();
