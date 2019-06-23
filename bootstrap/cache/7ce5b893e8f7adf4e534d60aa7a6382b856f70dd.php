@@ -35,10 +35,10 @@
                 <div class="card-body">
                     <h5 class="card-title">Thought of the day</h5>
                     <p class="card-text" id="quoteOfTheDay">
-                    This is a wider card with supporting text and below as a natural lead-in to the additional content. 
-                    This content is a little bit longer.
+                    <?php echo e($quote); ?>
+
                     <br>
-                    <span class="pull-right"><strong>~ Author</strong></span>
+                    <span class="pull-right"><strong>~ <?php echo e($author); ?></strong></span>
                     </p>
                     <p class="card-text d-inline"><small class="text-muted">quotes powered by: <a href="https://theysaiso.com">TheySaidSo</a></small>
                 </div>
