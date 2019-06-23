@@ -1,8 +1,7 @@
-@extends('app.layout.base')
-@section('title', 'Batches')
+<?php $__env->startSection('title', 'Batches'); ?>
 
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 
 <div class="container-fluid">
     <div class="row">
@@ -49,4 +48,5 @@
     </div>
 </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app.layout.base', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>

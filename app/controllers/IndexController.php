@@ -16,6 +16,10 @@ class IndexController extends BaseController
     public function __construct() {
         
     }
+
+    public function showBatches() {
+        return view('app/batches');
+    }
     
     public function showDashboard() {
         $q=Quote::where('type', 'qod')->first();
