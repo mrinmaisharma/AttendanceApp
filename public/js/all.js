@@ -10337,10 +10337,6 @@ jQuery.migrateMute===void 0&&(jQuery.migrateMute=!0),function(e,t,n){function r(
         });
     }
 })();
-    window.CONSOLEFLARE={
-        global: {}
-    };
-})();
 (function() {
     
     'use strict';
@@ -10355,7 +10351,6 @@ jQuery.migrateMute===void 0&&(jQuery.migrateMute=!0),function(e,t,n){function r(
         switch ($("body").data("page-id")) {
             case 'dashboard':
                 ATTD.global.quoteOfTheDay();
-            case 'login':
                 break;
             default:
                 //do nothing
