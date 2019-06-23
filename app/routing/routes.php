@@ -11,4 +11,10 @@ $router->map('GET', '/profile', 'App\Controllers\ProfileController@showProfile',
 /*auth*/
 $router->map('GET', '/login', 'App\Controllers\AuthController@showLoginForm', 'login');
 
+/*nitish*/
+require_once __DIR__ . '/nitishroutes.php';
+
+/*master*/
+require_once __DIR__ . '/master-routes.php';
+
 ?>
