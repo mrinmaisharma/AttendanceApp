@@ -23,12 +23,19 @@
     <link href="/icon/ionicons/css/ionicons.css" rel="stylesheet">
     <link href="/icon/themify-icons/themify-icons.css" rel="stylesheet">
     <link href="/icon/flag-icon-css/flag-icon.min.css" rel="stylesheet">
-    <link href="/icon/material-design-iconic-font/materialdesignicons.min.css" rel="stylesheet">
     <link href="/icon/pe-icon-set-weather/css/pe-icon-set-weather.min.css" rel="stylesheet"> -->
+    <link href="/icon/material-design-iconic-font/materialdesignicons.min.css" rel="stylesheet">
     <link href="/plugins/animate/animate.min.css" rel="stylesheet">
     <link href="/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet">
     <link href="/plugins/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
     <link href="/css/all.css" rel="stylesheet">
+
+    <!-- Page plugins css -->
+    <link href="/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet">
+    <!-- Date picker plugins css -->
+    <link href="/plugins/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet">
+    <!-- Daterange picker plugins css -->
+    <link href="/plugins/timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
 
 </head>
 
@@ -85,6 +92,11 @@
 <script type="text/javascript" src="/plugins/moment/moment.min.js"></script>
 <script type="text/javascript" src="/plugins/pg-calendar/js/pignose.calendar.min.js"></script>
 <!-- <script type="text/javascript" src="/js/dashboard/dashboard-1.js"></script> -->
+<script src="/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+<!-- Date Picker Plugin JavaScript -->
+<script src="/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+<!-- Date range Plugin JavaScript -->
+<script src="/plugins/timepicker/bootstrap-timepicker.min.js"></script>
 
 <script>
     (function($) {
@@ -102,7 +114,12 @@
             containerLayout: "wide",  //"boxed" and  "wide". If layout "vertical" and containerLayout "boxed", sidebarStyle will automatically turn into "overlay".
             direction: "ltr" //"ltr" = Left to Right; "rtl" = Right to Left
         });
-
+        
+        $('.datepicker').datepicker({
+            format: "dd/mm/yyyy",
+            setDate: new Date(),
+            autoclose: true
+        });
 
     })(jQuery);
 </script>

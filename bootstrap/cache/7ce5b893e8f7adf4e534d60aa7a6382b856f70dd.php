@@ -46,7 +46,55 @@
         </div>
     </div>
     <div class="row">
-    
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <form action="#" method="post">
+                        <h4 style="color: inherit;"><strong>Create Batch</strong></h4>
+                        <div class="form-group row">
+                            <label class="col-lg-4 col-form-label" for="batch_name">Batch Name <span class="text-danger">*</span>
+                            </label>
+                            <div class="col-lg-6">
+                                <input type="password" class="form-control" id="batch_name" name="batchName" required placeholder="Batch Name">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-4 col-form-label" for="start_date">Start Date<span class="text-danger">*</span>
+                            </label>
+                            <div class="col-lg-6">
+                                <div class="input-group">
+                                    <input type="text" class="form-control datepicker" name="startDate" id="startDate" placeholder="dd/mm/yyyy" required>
+                                    <span class="input-group-append">
+                                        <span class="input-group-text">
+                                            <i class="mdi mdi-calendar-check"></i>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-4 col-form-label" for="val-confirm-password">End Date
+                            </label>
+                            <div class="col-lg-6">
+                            <div class="input-group">
+                                    <input type="text" class="form-control datepicker" name="endDate" id="endDate" placeholder="dd/mm/yyyy">
+                                    <span class="input-group-append">
+                                        <span class="input-group-text">
+                                            <i class="mdi mdi-calendar-check"></i>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-lg-8 ml-auto">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
