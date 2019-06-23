@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d835d21d77998a02e1945820cd26ff2b",
+    "content-hash": "da638924cbaa3e2cd6385ebd17e31177",
     "packages": [
         {
             "name": "altorouter/altorouter",
@@ -481,48 +481,50 @@
             "time": "2018-10-11T15:32:19+00:00"
         },
         {
-            "name": "instamojo/instamojo-php",
-            "version": "0.3",
+            "name": "mashape/unirest-php",
+            "version": "v3.0.4",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Instamojo/instamojo-php.git",
-                "reference": "8b5a7f76c74d156b23f91c64413bda00a2329ea5"
+                "url": "https://github.com/Mashape/unirest-php.git",
+                "reference": "842c0f242dfaaf85f16b72e217bf7f7c19ab12cb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Instamojo/instamojo-php/zipball/8b5a7f76c74d156b23f91c64413bda00a2329ea5",
-                "reference": "8b5a7f76c74d156b23f91c64413bda00a2329ea5",
+                "url": "https://api.github.com/repos/Mashape/unirest-php/zipball/842c0f242dfaaf85f16b72e217bf7f7c19ab12cb",
+                "reference": "842c0f242dfaaf85f16b72e217bf7f7c19ab12cb",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.0"
+                "ext-curl": "*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "codeclimate/php-test-reporter": "0.1.*",
+                "phpunit/phpunit": "~4.4"
+            },
+            "suggest": {
+                "ext-json": "Allows using JSON Bodies for sending and parsing requests"
             },
             "type": "library",
             "autoload": {
-                "psr-4": {
-                    "Instamojo\\": "src/"
+                "psr-0": {
+                    "Unirest\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
-            "authors": [
-                {
-                    "name": "Instamojo and contributors",
-                    "email": "dev@instamojo.com",
-                    "homepage": "https://github.com/instamojo/instamojo-php/contributors"
-                }
-            ],
-            "description": "This is composer wrapper for instamojo-php",
-            "homepage": "https://github.com/instamojo/instamojo-php/",
+            "description": "Unirest PHP",
+            "homepage": "https://github.com/Mashape/unirest-php",
             "keywords": [
-                "api",
-                "instamojo",
-                "php",
-                "wrapper"
+                "client",
+                "curl",
+                "http",
+                "https",
+                "rest"
             ],
-            "time": "2016-09-25T21:46:32+00:00"
+            "time": "2016-08-11T17:49:21+00:00"
         },
         {
             "name": "nesbot/carbon",
@@ -1175,6 +1177,50 @@
                 "whoops"
             ],
             "time": "2018-10-23T09:00:00+00:00"
+        },
+        {
+            "name": "instamojo/instamojo-php",
+            "version": "0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Instamojo/instamojo-php.git",
+                "reference": "8b5a7f76c74d156b23f91c64413bda00a2329ea5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Instamojo/instamojo-php/zipball/8b5a7f76c74d156b23f91c64413bda00a2329ea5",
+                "reference": "8b5a7f76c74d156b23f91c64413bda00a2329ea5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Instamojo\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Instamojo and contributors",
+                    "email": "dev@instamojo.com",
+                    "homepage": "https://github.com/instamojo/instamojo-php/contributors"
+                }
+            ],
+            "description": "This is composer wrapper for instamojo-php",
+            "homepage": "https://github.com/instamojo/instamojo-php/",
+            "keywords": [
+                "api",
+                "instamojo",
+                "php",
+                "wrapper"
+            ],
+            "time": "2016-09-25T21:46:32+00:00"
         }
     ],
     "aliases": [],

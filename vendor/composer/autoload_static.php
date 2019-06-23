@@ -145,6 +145,16 @@ class ComposerStaticInitbcd6d965c663cf9220e0b5a445add9b6
         0 => __DIR__ . '/..' . '/nesbot/carbon/src',
     );
 
+    public static $prefixesPsr0 = array (
+        'U' => 
+        array (
+            'Unirest\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/mashape/unirest-php/src',
+            ),
+        ),
+    );
+
     public static $classMap = array (
         'AltoRouter' => __DIR__ . '/..' . '/altorouter/altorouter/AltoRouter.php',
         'App\\Classes\\CSRFToken' => __DIR__ . '/../..' . '/app/classes/CSRFToken.php',
@@ -157,45 +167,10 @@ class ComposerStaticInitbcd6d965c663cf9220e0b5a445add9b6
         'App\\Classes\\Session' => __DIR__ . '/../..' . '/app/classes/Session.php',
         'App\\Classes\\UploadFile' => __DIR__ . '/../..' . '/app/classes/UploadFile.php',
         'App\\Classes\\ValidateRequest' => __DIR__ . '/../..' . '/app/classes/ValidateRequest.php',
-        'App\\Controllers\\Admin\\BatchController' => __DIR__ . '/../..' . '/app/controllers/admin/BatchController.php',
-        'App\\Controllers\\Admin\\CourseCategoryController' => __DIR__ . '/../..' . '/app/controllers/admin/CourseCategoryController.php',
-        'App\\Controllers\\Admin\\CourseController' => __DIR__ . '/../..' . '/app/controllers/admin/CourseController.php',
-        'App\\Controllers\\Admin\\CourseTopicController' => __DIR__ . '/../..' . '/app/controllers/admin/CourseTopicController.php',
-        'App\\Controllers\\Admin\\DashboardController' => __DIR__ . '/../..' . '/app/controllers/admin/DashboardController.php',
-        'App\\Controllers\\Admin\\FaqController' => __DIR__ . '/../..' . '/app/controllers/admin/FaqController.php',
-        'App\\Controllers\\Admin\\FeatureController' => __DIR__ . '/../..' . '/app/controllers/admin/FeatureController.php',
-        'App\\Controllers\\Admin\\HighlightController' => __DIR__ . '/../..' . '/app/controllers/admin/HighlightController.php',
-        'App\\Controllers\\Admin\\LectureController' => __DIR__ . '/../..' . '/app/controllers/admin/LectureController.php',
-        'App\\Controllers\\Admin\\SubTopicController' => __DIR__ . '/../..' . '/app/controllers/admin/SubTopicController.php',
-        'App\\Controllers\\Admin\\WebinarLinkController' => __DIR__ . '/../..' . '/app/controllers/admin/WebinarLinkController.php',
         'App\\Controllers\\AuthController' => __DIR__ . '/../..' . '/app/controllers/AuthController.php',
         'App\\Controllers\\BaseController' => __DIR__ . '/../..' . '/app/controllers/BaseController.php',
-        'App\\Controllers\\CartController' => __DIR__ . '/../..' . '/app/controllers/CheckoutController.php',
-        'App\\Controllers\\CourseController' => __DIR__ . '/../..' . '/app/controllers/CourseController.php',
         'App\\Controllers\\IndexController' => __DIR__ . '/../..' . '/app/controllers/IndexController.php',
-        'App\\Controllers\\TestimonyController' => __DIR__ . '/../..' . '/app/controllers/TestimonyController.php',
-        'App\\Controllers\\contactController' => __DIR__ . '/../..' . '/app/controllers/ContactController.php',
-        'App\\Models\\Batch' => __DIR__ . '/../..' . '/app/models/Batch.php',
-        'App\\Models\\Category' => __DIR__ . '/../..' . '/app/models/Category.php',
-        'App\\Models\\Certificate' => __DIR__ . '/../..' . '/app/models/Certificate.php',
-        'App\\Models\\Course' => __DIR__ . '/../..' . '/app/models/Course.php',
-        'App\\Models\\Faq' => __DIR__ . '/../..' . '/app/models/Faq.php',
-        'App\\Models\\Feature' => __DIR__ . '/../..' . '/app/models/Feature.php',
-        'App\\Models\\FreeWebinar' => __DIR__ . '/../..' . '/app/models/FreeWebinar.php',
-        'App\\Models\\FreeWebinarRegistration' => __DIR__ . '/../..' . '/app/models/FreeWebinarRegistration.php',
-        'App\\Models\\Highlight' => __DIR__ . '/../..' . '/app/models/Highlight.php',
-        'App\\Models\\Internship' => __DIR__ . '/../..' . '/app/models/Internship.php',
-        'App\\Models\\Lecture' => __DIR__ . '/../..' . '/app/models/Lecture.php',
-        'App\\Models\\LectureVideo' => __DIR__ . '/../..' . '/app/models/LectureVideo.php',
-        'App\\Models\\Order' => __DIR__ . '/../..' . '/app/models/Order.php',
-        'App\\Models\\Payment' => __DIR__ . '/../..' . '/app/models/Payment.php',
-        'App\\Models\\SubTopic' => __DIR__ . '/../..' . '/app/models/SubTopic.php',
-        'App\\Models\\Testimonial' => __DIR__ . '/../..' . '/app/models/Testimonial.php',
-        'App\\Models\\Tool' => __DIR__ . '/../..' . '/app/models/Tool.php',
-        'App\\Models\\Topic' => __DIR__ . '/../..' . '/app/models/Topic.php',
-        'App\\Models\\User' => __DIR__ . '/../..' . '/app/models/User.php',
-        'App\\Models\\UserCourse' => __DIR__ . '/../..' . '/app/models/UserCourse.php',
-        'App\\Models\\WebinarLink' => __DIR__ . '/../..' . '/app/models/WebinarLink.php',
+        'App\\Controllers\\ProfileController' => __DIR__ . '/../..' . '/app/controllers/ProfileController.php',
         'App\\RouteDispatcher' => __DIR__ . '/../..' . '/app/routing/RouteDispatcher.php',
         'Carbon\\Carbon' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Carbon.php',
         'Carbon\\CarbonInterval' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonInterval.php',
@@ -656,6 +631,11 @@ class ComposerStaticInitbcd6d965c663cf9220e0b5a445add9b6
         'Symfony\\Component\\Translation\\Writer\\TranslationWriter' => __DIR__ . '/..' . '/symfony/translation/Writer/TranslationWriter.php',
         'Symfony\\Component\\Translation\\Writer\\TranslationWriterInterface' => __DIR__ . '/..' . '/symfony/translation/Writer/TranslationWriterInterface.php',
         'Symfony\\Polyfill\\Mbstring\\Mbstring' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/Mbstring.php',
+        'Unirest\\Exception' => __DIR__ . '/..' . '/mashape/unirest-php/src/Unirest/Exception.php',
+        'Unirest\\Method' => __DIR__ . '/..' . '/mashape/unirest-php/src/Unirest/Method.php',
+        'Unirest\\Request' => __DIR__ . '/..' . '/mashape/unirest-php/src/Unirest/Request.php',
+        'Unirest\\Request\\Body' => __DIR__ . '/..' . '/mashape/unirest-php/src/Unirest/Request/Body.php',
+        'Unirest\\Response' => __DIR__ . '/..' . '/mashape/unirest-php/src/Unirest/Response.php',
         'Whoops\\Exception\\ErrorException' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Exception/ErrorException.php',
         'Whoops\\Exception\\Formatter' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Exception/Formatter.php',
         'Whoops\\Exception\\Frame' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Exception/Frame.php',
@@ -682,6 +662,7 @@ class ComposerStaticInitbcd6d965c663cf9220e0b5a445add9b6
             $loader->prefixLengthsPsr4 = ComposerStaticInitbcd6d965c663cf9220e0b5a445add9b6::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitbcd6d965c663cf9220e0b5a445add9b6::$prefixDirsPsr4;
             $loader->fallbackDirsPsr4 = ComposerStaticInitbcd6d965c663cf9220e0b5a445add9b6::$fallbackDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitbcd6d965c663cf9220e0b5a445add9b6::$prefixesPsr0;
             $loader->classMap = ComposerStaticInitbcd6d965c663cf9220e0b5a445add9b6::$classMap;
 
         }, null, ClassLoader::class);
