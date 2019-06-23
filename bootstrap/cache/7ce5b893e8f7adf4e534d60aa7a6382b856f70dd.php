@@ -6,6 +6,9 @@
 
 <div class="container-fluid">
     <div class="row">
+        <div class="col-md-12">
+            <?php echo $__env->make('includes.form_alert', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        </div>
         <div class="col-lg-3 col-sm-6">
             <div class="card gradient-1">
                 <div class="card-body">
@@ -49,13 +52,14 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <form action="#" method="post">
+                    <form action="/master/batch/create" method="post">
+                        <input type="hidden" name="token" value="<?php echo e(\App\CLasses\CSRFToken::_token()); ?>">
                         <h4 style="color: inherit;"><strong>Create Batch</strong></h4>
                         <div class="form-group row">
                             <label class="col-lg-4 col-form-label" for="batch_name">Batch Name <span class="text-danger">*</span>
                             </label>
                             <div class="col-lg-6">
-                                <input type="password" class="form-control" id="batch_name" name="batchName" required placeholder="Batch Name">
+                                <input type="text" autocomplete="off" class="form-control" id="batch_name" name="name" required placeholder="Batch Name">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -63,7 +67,7 @@
                             </label>
                             <div class="col-lg-6">
                                 <div class="input-group">
-                                    <input type="text" class="form-control datepicker" name="startDate" id="startDate" placeholder="dd/mm/yyyy" required>
+                                    <input type="text" autocomplete="off" class="form-control datepicker" name="start_date" id="startDate" placeholder="yyyy-mm-dd" required>
                                     <span class="input-group-append">
                                         <span class="input-group-text">
                                             <i class="mdi mdi-calendar-check"></i>
@@ -77,7 +81,7 @@
                             </label>
                             <div class="col-lg-6">
                             <div class="input-group">
-                                    <input type="text" class="form-control datepicker" name="endDate" id="endDate" placeholder="dd/mm/yyyy">
+                                    <input type="text" autocomplete="off" class="form-control datepicker" name="end_date" id="endDate" placeholder="yyyy-mm-dd">
                                     <span class="input-group-append">
                                         <span class="input-group-text">
                                             <i class="mdi mdi-calendar-check"></i>
@@ -92,6 +96,25 @@
                             </div>
                         </div>
                     </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title" style="color: inherit;"><strong>Active Batches</strong></h4>
+                    <div class="table-responsive" style="overflow:auto; height:15.5rem; max-height:15.5rem">
+                        <table class="table header-border table-hover verticle-middle" style="width:100%">
+                            <tbody style="width:100%">
+                                <tr style="width:100%">
+                                    <td>Python &amp; data-structure</td>
+                                    <td style="text-align:center">
+                                        <span class="total-students text-pale-sky"><i class="fa fa-users mr-3"></i><span class="label gradient-8 btn-rounded">0</span></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
