@@ -9,12 +9,28 @@ use App\Classes\CSRFToken;
 use App\Classes\ValidateRequest;
 use App\Classes\Mail;
 use App\Models\Batch;
+use App\Models\Student;
+use App\Models\Trainer;
 use Carbon\Carbon;
 
 class BatchController extends BaseController
 {
+    public $table_name="batches";
+    public $batches;
+
     public function __construct() {
-        
+        $this->batches=Batch::all();
+        $object=new Batch;
+        $this->batches=fetch($this->table_name, $object);        
+    }
+
+    public function showBatches() {
+        $batches=$this->batches;
+        for($i = 0; $i < count($batches); $i++) {
+            $batches[$i]['students'] = Student::where('batch_id', $batches[$i]['id'])->get(); 
+            $batches[$i]['trainer'] = Trainer::where('id', $batches[$i]['trainer_id'])->first();
+        }
+        return view('app/batches', [ 'batches'=>$batches ]);
     }
     
     public function create() {
@@ -80,6 +96,10 @@ class BatchController extends BaseController
             }
             throw new \Exception('Token mismatch');
         }
+    }
+
+    public function edit() {
+
     }
     
 }

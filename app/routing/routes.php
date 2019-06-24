@@ -11,6 +11,9 @@ $router->map('GET', '/profile', 'App\Controllers\ProfileController@showProfile',
 /*auth*/
 $router->map('GET', '/login', 'App\Controllers\AuthController@showLoginForm', 'login');
 
+/*batches*/
+$router->map('GET', '/master/batches', 'App\Controllers\BatchController@showBatches', 'batches');
+
 /*nitish*/
 require_once __DIR__ . '/nitishroutes.php';
 
