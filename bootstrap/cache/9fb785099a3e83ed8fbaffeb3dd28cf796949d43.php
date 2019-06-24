@@ -3,7 +3,7 @@
 
 <?php $__env->startSection('content'); ?>
 
-<div class="container-fluid">
+<div class="container-fluid batches">
     <div class="row">
         <div class="col-sm-6 col-lg-4">
             <div class="card">
@@ -16,7 +16,7 @@
                     <h6 class="card-subtitle mb-2 text-muted">Trainer: Nihal Jaiswal</h6>
                     <div class="row">
                         <div class="col-12">
-                            <span class="card-text pull-left d-inline"><small class="text-muted">Batch Start 15th August</small></span>
+                            <span class="card-text pull-left d-inline"><small class="text-muted">Start Date: 15th August</small></span>
                             <a href="#" class="badge badge-pill badge-primary pull-right" style="margin: 0.1rem 0;">View Details</a>
                         </div>
                         <div class="col-12">
