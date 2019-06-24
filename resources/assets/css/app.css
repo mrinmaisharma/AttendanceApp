@@ -18,3 +18,6 @@ html {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #999; }
+
+.card .card-body {
+  padding: 1.5rem 1.5rem; }
