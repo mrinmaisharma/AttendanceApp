@@ -14,6 +14,12 @@ class NItishController extends BaseController
     public function showBatches() {
         return view('app/batches');
     }
+    public function showTrainers() {
+        return view('app/trainers');
+    }
+    public function showStudents() {
+        return view('app/students');
+    }
 }
 
 ?>
