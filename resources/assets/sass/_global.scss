@@ -22,4 +22,9 @@ border-radius: 7px;
 ::-webkit-scrollbar-thumb:hover {
 background: #999; 
 }
+.batches {
+    .card .card-body {
+        padding: 1.5rem 1.5rem;
+    }
+}
   

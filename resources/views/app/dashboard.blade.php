@@ -104,12 +104,15 @@
                 <div class="card-body">
                     <h4 class="card-title" style="color: inherit;"><strong>Active Batches</strong></h4>
                     <div class="table-responsive" style="overflow:auto; height:15.5rem; max-height:15.5rem">
-                        <table class="table header-border table-hover verticle-middle" style="width:100%">
-                            <tbody style="width:100%">
-                                <tr style="width:100%">
+                        <table class="table header-border table-hover verticle-middle">
+                            <tbody>
+                                <tr>
                                     <td>Python &amp; data-structure</td>
                                     <td style="text-align:center">
-                                        <span class="total-students text-pale-sky"><i class="fa fa-users mr-3"></i><span class="label gradient-8 btn-rounded">0</span></span>
+                                        <span class="total-students text-pale-sky">
+                                            <i class="fa fa-users mr-3"></i>
+                                            <span class="label gradient-8 btn-rounded">0</span>
+                                        </span>
                                     </td>
                                 </tr>
                             </tbody>
