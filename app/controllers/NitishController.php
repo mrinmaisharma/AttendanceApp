@@ -11,9 +11,6 @@ use App\Classes\Mail;
 
 class NItishController extends BaseController
 {
-    public function showBatches() {
-        return view('app/batches');
-    }
     public function showTrainers() {
         return view('app/trainers');
     }

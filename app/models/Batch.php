@@ -18,14 +18,15 @@ class Batch extends Model
         $batches=[];
         foreach($data as $item) {
             $modified=new Carbon($item->updated_at);
+            $start=new Carbon($item->start_date);
             $end=($item->end_date==null) ? null : new Carbon($item->end_date);
             array_push($batches, [
                 'id'=>$item->id,
                 'name'=>$item->name,
-                'start_date'=>$item->start_date,
+                'start_date'=>$start->toFormattedDateString(),
                 'end_date'=>$item->end_date,
                 'trainer_id'=>$item->trainer_id,
-                'lastmodified'=>$modified->toFormattedDateString()." | ".$added->format('h:i a') 
+                'lastmodified'=>$modified->toFormattedDateString()." | ".$modified->format('h:i a') 
             ]);
         }
         

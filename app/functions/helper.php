@@ -45,7 +45,7 @@ function slug($value) {
 
 function fetch($table_name, $object) {
     
-    $data=Capsule::select("select * from $table_name where deleted_at is null order by created_at desc");
+    $data=Capsule::select("select * from $table_name where deleted_at is null");
     
     $data=$object->transform($data);
     
