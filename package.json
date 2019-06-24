@@ -1,6 +1,6 @@
 {
     "author": "Arbre Creations",
-    "description": "Attendence",
+    "description": "AttendanceApp",
     "private": true,
     "dependencies": {
         "gulp": "~3.9",
