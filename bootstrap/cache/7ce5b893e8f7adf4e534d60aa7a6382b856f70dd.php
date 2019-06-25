@@ -15,7 +15,7 @@
                     <h3 class="card-title text-white">Batches</h3>
                     <div class="d-inline-block">
                         <br>
-                        <h2 class="text-white">0</h2>
+                        <h2 class="text-white"><?php echo e(count($batches)); ?></h2>
                     </div>
                     <span class="float-right display-5 opacity-5"><i class="icon-grid"></i></span>
                 </div>
@@ -27,7 +27,7 @@
                     <h3 class="card-title text-white">Trainers</h3>
                     <div class="d-inline-block">
                         <br>
-                        <h2 class="text-white">0</h2>
+                        <h2 class="text-white"><?php echo e(count($trainers)); ?></h2>
                     </div>
                     <span class="float-right display-5 opacity-5"><i class="fa fa-users"></i></span>
                 </div>
@@ -104,19 +104,25 @@
                 <div class="card-body">
                     <h4 class="card-title" style="color: inherit;"><strong>Active Batches</strong></h4>
                     <div class="table-responsive" style="overflow:auto; height:15.5rem; max-height:15.5rem">
+                        <?php if(count($activeBatches)): ?>
                         <table class="table header-border table-hover verticle-middle">
                             <tbody>
+                                <?php $__currentLoopData = $activeBatches; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $batch): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
-                                    <td>Python &amp; data-structure</td>
+                                    <td><?php echo e($batch['name']); ?></td>
                                     <td style="text-align:center">
                                         <span class="total-students text-pale-sky">
                                             <i class="fa fa-users mr-3"></i>
-                                            <span class="label gradient-8 btn-rounded">0</span>
+                                            <span class="label gradient-8 btn-rounded"><?php echo e(count($batch[students])); ?></span>
                                         </span>
                                     </td>
                                 </tr>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </tbody>
                         </table>
+                        <?php else: ?>
+                        <h3 class="text-center">No active batches</h3>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>

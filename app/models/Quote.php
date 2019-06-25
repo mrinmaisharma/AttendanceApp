@@ -15,11 +15,11 @@ class Quote extends Model
     protected $dates=['deleted_at'];
     
     public function transform($data) {
-        $batches=[];
+        $quotes=[];
         foreach($data as $item) {
             $modified=new Carbon($item->updated_at);
             $end=($item->end_date==null) ? null : new Carbon($item->end_date);
-            array_push($batches, [
+            array_push($quotes, [
                 'id'=>$item->id,
                 'type'=>$item->type,
                 'quote'=>$item->quote,

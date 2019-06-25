@@ -28,6 +28,7 @@
     <link href="/plugins/animate/animate.min.css" rel="stylesheet">
     <link href="/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet">
     <link href="/plugins/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
+    <link href="/plugins/tables/css/datatable/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link href="/css/all.css" rel="stylesheet">
 
     <!-- Page plugins css -->
@@ -97,6 +98,11 @@
 <script src="/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
 <!-- Date range Plugin JavaScript -->
 <script src="/plugins/timepicker/bootstrap-timepicker.min.js"></script>
+<!-- DataTable -->
+<script src="/plugins/tables/js/jquery.dataTables.min.js"></script>
+<script src="/plugins/tables/js/datatable/dataTables.bootstrap4.min.js"></script>
+<script src="/plugins/tables/js/datatable-init/datatable-basic.min.js"></script>
+
 
 <script>
     (function($) {

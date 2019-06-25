@@ -21,14 +21,14 @@
                         <div class="col">
                             <div class="card card-profile text-center">
                                 <span class="mb-1 text-warning"><i class="icon-grid"></i></span>
-                                <h3 class="mb-0">0</h3>
+                                <h3 class="mb-0">{{count($batches)}}</h3>
                                 <p class="text-muted">Batches</p>
                             </div>
                         </div>
                         <div class="col">
                             <div class="card card-profile text-center">
                                 <span class="mb-1 text-primary"><i class="icon-people"></i></span>
-                                <h3 class="mb-0">0</h3>
+                                <h3 class="mb-0">{{count($students)}}</h3>
                                 <p class="text-muted px-4">Students</p>
                             </div>
                         </div>

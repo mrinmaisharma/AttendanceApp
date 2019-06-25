@@ -8,6 +8,8 @@ use App\Classes\Session;
 use App\Classes\CSRFToken;
 use App\Classes\ValidateRequest;
 use App\Classes\Mail;
+use App\Models\Batch;
+use App\Models\Student;
 
 class ProfileController extends BaseController
 {
@@ -16,7 +18,9 @@ class ProfileController extends BaseController
     }
     
    public function showProfile() {
-       return view('app/profile');
+       $batches=Batch::all();
+       $students=Student::all();
+       return view('app/profile', ['batches'=>$batches, 'students'=>$students]);
    }
 }
 

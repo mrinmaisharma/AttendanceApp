@@ -10,18 +10,32 @@ use App\Classes\ValidateRequest;
 use App\Classes\Mail;
 use App\Models\Quote;
 use Carbon\Carbon;
+use App\Models\Batch;
+use App\Models\Student;
+use App\Models\Trainer;
 
 class IndexController extends BaseController
 {
     public function __construct() {
         
     }
-
-    public function showBatches() {
-        return view('app/batches');
-    }
     
     public function showDashboard() {
+        $trainers=fetch('trainers', new Trainer);
+
+        $batches=fetch('batches', new Batch);
+        for($i = 0; $i < count($batches); $i++) {
+            $batches[$i]['students'] = Student::where('batch_id', $batches[$i]['id'])->get();
+            if($batches[$i]['students'] == NULL) {
+                $batches[$i]['students']=array();
+            } 
+        }
+        $activeBatches = array();
+        foreach($batches as $batch) {
+            if($batch['end_date'] == NULL) {
+                array_push($activeBatches,$batch);
+            }
+        }
         $q=Quote::where('type', 'qod')->first();
         if(!$q) {
             $response = \Unirest\Request::get("http://quotes.rest/qod.json?category=inspire");
@@ -32,13 +46,25 @@ class IndexController extends BaseController
                 "quote"=>$quote,
                 "author"=>$author
             ]);
-            return view('app/dashboard', ['quote'=>$quote, 'author'=>$author]);
+            return view('app/dashboard', [
+                'quote'=>$quote, 
+                'author'=>$author, 
+                'batches'=>$batches, 
+                'activeBatches'=>$activeBatches,
+                'trainers'=>$trainers
+                ]);
         }
         else {
             $modified = new Carbon($q->updated_at);
             $modifiedDate = $modified->format('Y m d');
             if($modifiedDate == date("Y m d")) {
-                return view('app/dashboard', ['quote'=>$q['quote'], 'author'=>$q['author']]);
+                return view('app/dashboard', [
+                    'quote'=>$q['quote'], 
+                    'author'=>$q['author'], 
+                    'batches'=>$batches, 
+                    'activeBatches'=>$activeBatches,
+                    'trainers'=>$trainers
+                    ]);
             }
             else {
                 $response = \Unirest\Request::get("http://quotes.rest/qod.json?category=inspire");
@@ -48,7 +74,13 @@ class IndexController extends BaseController
                     "quote"=>$quote,
                     "author"=>$author
                 ]);
-                return view('app/dashboard', ['quote'=>$quote, 'author'=>$author]);
+                return view('app/dashboard', [
+                    'quote'=>$quote, 
+                    'author'=>$author, 
+                    'batches'=>$batches, 
+                    'activeBatches'=>$activeBatches,
+                    'trainers'=>$trainers
+                    ]);
             }
         }
     }

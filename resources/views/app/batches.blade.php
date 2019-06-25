@@ -6,6 +6,7 @@
 
 <div class="container-fluid batches">
     <div class="row">
+        @if(count($batches))
         @foreach($batches as $batch)
         <div class="col-sm-6 col-lg-4">
             <div class="card">
@@ -23,7 +24,7 @@
                         </div>
                         <div class="col-12">
                             <button type="button" class="btn mb-1 btn-rounded btn-outline-info" data-toggle="modal" data-target="#basicModal" style="margin-top:1em; font-size:0.8rem;">Assign Trainer</button>
-                            <button type="button" class="btn mb-1 btn-rounded btn-outline-primary float-right"style="margin-top:1em; font-size:0.8rem;">+ Students</button>
+                            <a href="/master/student/add" class="btn mb-1 btn-rounded btn-outline-primary float-right"style="margin-top:1em; font-size:0.8rem;">+ Students</a>
                         </div>
                     </div>
                     <!-- Modal -->
@@ -31,17 +32,14 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Modal title</h5>
+                                    <h5 class="modal-title" style="collor:inherit"><strong>Assign Trainer</strong></h5>
                                     <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
                                 </div>
 
-                                <div class="dropdown">
-                                    <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Select Trainer</button>
-                                    <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 37px, 0px);"><a class="dropdown-item" href="#">Link 1</a> <a class="dropdown-item" href="#">Link 2</a> <a class="dropdown-item" href="#">Link 3</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Another link</a>
-                                    </div>
+                                <div class="modal-body">
+                                    
                                 </div>
+                                
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                     <button type="button" class="btn btn-primary">Assign</button>
@@ -53,6 +51,9 @@
             </div>
         </div>
         @endforeach
+        @else
+        <div class="col-md-12"><h3 class="text-center">No batch created</h3></div>
+        @endif
     </div>
 </div>
 

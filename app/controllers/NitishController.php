@@ -11,12 +11,7 @@ use App\Classes\Mail;
 
 class NItishController extends BaseController
 {
-    public function showTrainers() {
-        return view('app/trainers');
-    }
-    public function showStudents() {
-        return view('app/students');
-    }
+    
 }
 
 ?>
