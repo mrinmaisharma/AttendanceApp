@@ -5,6 +5,7 @@
 
 <div class="container-fluid batches">
     <div class="row">
+        <?php if(count($batches)): ?>
         <?php $__currentLoopData = $batches; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $batch): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <div class="col-sm-6 col-lg-4">
             <div class="card">
@@ -52,6 +53,9 @@
             </div>
         </div>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        <?php else: ?>
+        <div class="col-md-12"><h3 class="text-center">No batch created</h3></div>
+        <?php endif; ?>
     </div>
 </div>
 

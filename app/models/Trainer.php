@@ -15,11 +15,10 @@ class Trainer extends Model
     protected $dates=['deleted_at'];
     
     public function transform($data) {
-        $batches=[];
+        $trainers=[];
         foreach($data as $item) {
             $modified=new Carbon($item->updated_at);
-            $end=($item->end_date==null) ? null : new Carbon($item->end_date);
-            array_push($batches, [
+            array_push($trainers, [
                 'id'=>$item->id,
                 'username'=>$item->username,
                 'name'=>$item->name,
@@ -30,11 +29,11 @@ class Trainer extends Model
                 'city'=>$item->city,
                 'state'=>$item->state,
                 'pincode'=>$item->pincode,
-                'lastmodified'=>$modified->toFormattedDateString()." | ".$added->format('h:i a') 
+                'lastmodified'=>$modified->toFormattedDateString()." | ".$modified->format('h:i a') 
             ]);
         }
         
-        return $batches;
+        return $trainers;
     }
 }
 

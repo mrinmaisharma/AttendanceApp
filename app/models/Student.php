@@ -15,11 +15,10 @@ class Student extends Model
     protected $dates=['deleted_at'];
     
     public function transform($data) {
-        $batches=[];
+        $students=[];
         foreach($data as $item) {
             $modified=new Carbon($item->updated_at);
-            $end=($item->end_date==null) ? null : new Carbon($item->end_date);
-            array_push($batches, [
+            array_push($students, [
                 'id'=>$item->id,
                 'username'=>$item->username,
                 'batch_id'=>$item->batch_id,
@@ -32,11 +31,11 @@ class Student extends Model
                 'city'=>$item->city,
                 'state'=>$item->state,
                 'pincode'=>$item->pincode,
-                'lastmodified'=>$modified->toFormattedDateString()." | ".$added->format('h:i a') 
+                'lastmodified'=>$modified->toFormattedDateString()." | ".$modified->format('h:i a') 
             ]);
         }
         
-        return $batches;
+        return $students;
     }
 }
 
