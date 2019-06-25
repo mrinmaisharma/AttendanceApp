@@ -27,7 +27,10 @@ class BatchController extends BaseController
     public function showBatches() {
         $batches=$this->batches;
         for($i = 0; $i < count($batches); $i++) {
-            $batches[$i]['students'] = Student::where('batch_id', $batches[$i]['id'])->get(); 
+            $batches[$i]['students'] = Student::where('batch_id', $batches[$i]['id'])->get();
+            if($batches[$i]['students'] == null) {
+                $batches[$i]['students']=array();
+            } 
             $batches[$i]['trainer'] = Trainer::where('id', $batches[$i]['trainer_id'])->first();
         }
         return view('app/batches', [ 'batches'=>$batches ]);

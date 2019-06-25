@@ -36,13 +36,10 @@
                                     <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
                                 </div>
 
-                                <div class="dropdown">
-                                    <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Select Trainer</button>
-                                    <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 37px, 0px);"><a class="dropdown-item" href="#">Link 1</a> <a class="dropdown-item" href="#">Link 2</a> <a class="dropdown-item" href="#">Link 3</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Another link</a>
-                                    </div>
+                                <div class="modal-body">
+                                    
                                 </div>
+                                
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                     <button type="button" class="btn btn-primary">Assign</button>
