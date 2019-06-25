@@ -9,8 +9,11 @@ use App\Classes\CSRFToken;
 use App\Classes\ValidateRequest;
 use App\Classes\Mail;
 
-class NItishController extends BaseController
+class NitishController extends BaseController
 {
+    public function markAttendance(){
+        return view('app/mark-attendance');
+    }
     
 }
 
