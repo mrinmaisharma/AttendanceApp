@@ -27,22 +27,18 @@
                 <div class="card-body">
                     <h4 class="card-title">Batch Students</h4>
                     <div class="table-responsive"> 
-
                         <table class="zero-configuration table table-hover table-bordered table-striped verticle-middle">
                             <thead>
                                 <tr>
+                                    <th scope="col">#Id</th>
                                     <th scope="col">Full Name</th>
-                                    <th scope="col">Roll No.</th>
-                                    <th scope="col">Phone No.</th>
                                     <th scope="col">Mark Attendance</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                
                                 <tr>
+                                    <td>1</td>
                                     <td>Rahul</td>
-                                    <td>123</td>
-                                    <td>8102248110
                                     <td>
                                         <div class="dropdown">
                                             <select class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -51,16 +47,11 @@
                                                     <option>Absent</option>
                                                 </div>      
                                             </select>
-                                            
                                         </div>
                                     </td>
                                 </tr>
-                                                    
                             </tbody>
                         </table>
-                        
-                        
-                     
                     </div>
                 </div>
             </div>
