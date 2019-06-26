@@ -1,7 +1,7 @@
-@extends('app.layout.base')
-@section('title', 'Add Trainer')
+@extends('trainer.layout.base')
+@section('title', 'Add Student')
 
-@section('data-page-id', 'addTrainer')
+@section('data-page-id', 'addStudent')
 
 @section('content')
 
@@ -13,15 +13,36 @@
         <div class="col-md-8 offset-md-2">
             <div class="card">
                 <div class="card-body">
-                    <h3 style="color: inherit;" class="text-center"><strong>Add Trainer</strong></h4>
+                    <h3 style="color: inherit;" class="text-center"><strong>Add Student</strong></h4>
                 </div>
             </div>
         </div>
         <div class="col-md-8 offset-md-2">
             <div class="card">
                 <div class="card-body">
-                    <form action="/master/trainer/add" method="post">
+                    <form action="/student/add" method="post">
                         <input type="hidden" name="token" value="{{\App\CLasses\CSRFToken::_token()}}">
+                        <div class="form-group row">
+                            <label class="col-md-4 offset-md-1 col-form-label" for="batch">
+                                Batch <span class="text-danger">*</span>
+                            </label>
+                            <div class="col-md-6">
+                                <select class="form-control" name="batch_id" id="batch" required>
+                                    <option value="" {{($batch!=null) ? 'selected': ''}}>Select Batch</option>
+                                    <?php
+                                        $user=user();
+                                        $trainer_id = \App\Models\Trainer::where('username', $user['username'])->first()['id'];
+                                     ?>
+                                    @foreach(\App\Models\Batch::where('trainer_id', $trainer_id)->get() as $b)
+                                        @if($batch!=null)
+                                            <option value="{{$b['id']}}" {{($b['id'] == $batch['id']) ? 'selected': ''}}>{{$b['name']}}</option>
+                                        @else
+                                            <option value="{{$b['id']}}">{{$b['name']}}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <label class="col-md-4 offset-md-1 col-form-label" for="fullname">
                                 Full Name <span class="text-danger">*</span>
@@ -40,16 +61,6 @@
                                 <input type="text" autocomplete="off" 
                                 class="form-control" id="username" 
                                 name="username" placeholder="Username" required>
-                            </div>
-                        </div>                        
-                        <div class="form-group row">
-                            <label class="col-md-4 offset-md-1 col-form-label" for="password">
-                                Password <span class="text-danger">*</span>
-                            </label>
-                            <div class="col-md-6">
-                                <input type="password" pattern="((?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$)" 
-                                class="form-control" id="password" 
-                                name="password" title="UpperCase, LowerCase, Number/SpecialChar and min 6 Chars." minlength="6" placeholder="Create Password" required>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -80,6 +91,16 @@
                                 <input type="text" autocomplete="off" 
                                 class="form-control" id="email" 
                                 name="email" placeholder="Email" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-4 offset-md-1 col-form-label" for="institute">
+                                Institute <span class="text-danger">*</span>
+                            </label>
+                            <div class="col-md-6">
+                                <input type="text" autocomplete="off" 
+                                class="form-control" id="institute" 
+                                name="institute" placeholder="Institute" required>
                             </div>
                         </div>
                         <div class="form-group row">

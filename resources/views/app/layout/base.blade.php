@@ -38,6 +38,13 @@
     <!-- Daterange picker plugins css -->
     <link href="/plugins/timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
 
+    <style>
+        input[type=checkbox]:checked {
+            content: '✔' !important;
+            background-color:white !important;
+        }
+    </style>
+
 </head>
 
 <body data-page-id="@yield('data-page-id')">

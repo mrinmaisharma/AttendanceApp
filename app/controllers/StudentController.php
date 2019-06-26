@@ -29,6 +29,14 @@ class StudentController extends BaseController
         }
         return view('app/students', ['students'=>$students]);
     }
+
+    public function showBatchStudents($id) {
+        $students=Student::where('batch_id', $id['id'])->get();
+        for($i = 0; $i < count($students); $i++) {
+            $students[$i]['batch'] = Batch::where('id', $students[$i]['batch_id'])->first();
+        }
+        return view('trainer/students', ['students'=>$students]);
+    }
     
     public function showAddStudentPage() {
         $batch=null;

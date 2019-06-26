@@ -27,13 +27,13 @@
                                 Batch <span class="text-danger">*</span>
                             </label>
                             <div class="col-md-6">
-                                <select class="form-control" name="batch_id" id="batch">
-                                    <option val="" {{($batch!=null) ? 'selected': ''}}>Select Batch</option>
+                                <select class="form-control" name="batch_id" id="batch" required>
+                                    <option value="" {{($batch!=null) ? 'selected': ''}}>Select Batch</option>
                                     @foreach(\App\Models\Batch::all() as $b)
                                         @if($batch!=null)
-                                            <option val="{{$b['id']}}" {{($b['id'] == $batch['id']) ? 'selected': ''}}>{{$b['name']}}</option>
+                                            <option value="{{$b['id']}}" {{($b['id'] == $batch['id']) ? 'selected': ''}}>{{$b['name']}}</option>
                                         @else
-                                            <option val="{{$b['id']}}">{{$b['name']}}</option>
+                                            <option value="{{$b['id']}}">{{$b['name']}}</option>
                                         @endif
                                     @endforeach
                                 </select>

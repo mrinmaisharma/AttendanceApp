@@ -40,7 +40,7 @@
                         <div class="dropdown-content-body">
                             <ul>
                                 <li>
-                                    <a href="/master/profile"><i class="icon-user"></i> <span>Profile</span></a>
+                                    <a href="/trainer/profile"><i class="icon-user"></i> <span>Profile</span></a>
                                 </li>                                
                                 <hr class="my-2">
                                 <li><a href="page-login.html"><i class="icon-key"></i> <span>Logout</span></a></li>

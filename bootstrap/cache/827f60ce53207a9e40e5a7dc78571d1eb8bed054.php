@@ -1,4 +1,4 @@
-<?php $__env->startSection('title', 'Trainers'); ?>
+<?php $__env->startSection('title', 'Students'); ?>
 
 
 <?php $__env->startSection('content'); ?>
@@ -9,7 +9,7 @@
             <?php echo $__env->make('includes.form_alert', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
         </div>
         <div class="col-md-12">
-            <a href="/master/student/add" class="btn mb-1 btn-rounded btn-outline-info">
+            <a href="/student/add" class="btn mb-1 btn-rounded btn-outline-info">
                 <i class="fa fa-plus"></i> Add Student
             </a>
             <br>
@@ -128,4 +128,4 @@
 </div>
 
 <?php $__env->stopSection(); ?>
-<?php echo $__env->make('app.layout.base', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('trainer.layout.base', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>

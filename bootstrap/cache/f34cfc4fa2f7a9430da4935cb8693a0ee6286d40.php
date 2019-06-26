@@ -69,8 +69,8 @@
     ***********************************-->
     <div id="main-wrapper">
 
-        <?php echo $__env->make('includes.app.navbar', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-        <?php echo $__env->make('includes.app.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        <?php echo $__env->make('includes.trainer.navbar', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        <?php echo $__env->make('includes.trainer.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
         <div class="content-body" style="min-height: 788px;">
         <!-- Main -->
             <?php echo $__env->yieldContent('content'); ?>

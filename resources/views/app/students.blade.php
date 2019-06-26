@@ -41,7 +41,7 @@
                                         <td>{{$student['name']}}</td>
                                         <td>{{$student['phn_number']}}</td>
                                         <td>{{$student['email']}}</td>
-                                        <td>{{$student['batch']->name}}</td>
+                                        <td>{{$student['batch']['name']}}</td>
                                         <td>
                                             <button type="button" class="btn mb-1 btn-rounded btn-primary" data-toggle="modal" data-target="#view-student{{$student['id']}}">
                                                 View Details

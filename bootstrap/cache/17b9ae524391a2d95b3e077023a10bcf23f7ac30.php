@@ -1,27 +1,47 @@
-@extends('app.layout.base')
-@section('title', 'Add Trainer')
+<?php $__env->startSection('title', 'Add Student'); ?>
 
-@section('data-page-id', 'addTrainer')
+<?php $__env->startSection('data-page-id', 'addStudent'); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
-            @include('includes.form_alert')
+            <?php echo $__env->make('includes.form_alert', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
         </div>
         <div class="col-md-8 offset-md-2">
             <div class="card">
                 <div class="card-body">
-                    <h3 style="color: inherit;" class="text-center"><strong>Add Trainer</strong></h4>
+                    <h3 style="color: inherit;" class="text-center"><strong>Add Student</strong></h4>
                 </div>
             </div>
         </div>
         <div class="col-md-8 offset-md-2">
             <div class="card">
                 <div class="card-body">
-                    <form action="/master/trainer/add" method="post">
-                        <input type="hidden" name="token" value="{{\App\CLasses\CSRFToken::_token()}}">
+                    <form action="/student/add" method="post">
+                        <input type="hidden" name="token" value="<?php echo e(\App\CLasses\CSRFToken::_token()); ?>">
+                        <div class="form-group row">
+                            <label class="col-md-4 offset-md-1 col-form-label" for="batch">
+                                Batch <span class="text-danger">*</span>
+                            </label>
+                            <div class="col-md-6">
+                                <select class="form-control" name="batch_id" id="batch" required>
+                                    <option value="" <?php echo e(($batch!=null) ? 'selected': ''); ?>>Select Batch</option>
+                                    <?php
+                                        $user=user();
+                                        $trainer_id = \App\Models\Trainer::where('username', $user['username'])->first()['id'];
+                                     ?>
+                                    <?php $__currentLoopData = \App\Models\Batch::where('trainer_id', $trainer_id)->get(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $b): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <?php if($batch!=null): ?>
+                                            <option value="<?php echo e($b['id']); ?>" <?php echo e(($b['id'] == $batch['id']) ? 'selected': ''); ?>><?php echo e($b['name']); ?></option>
+                                        <?php else: ?>
+                                            <option value="<?php echo e($b['id']); ?>"><?php echo e($b['name']); ?></option>
+                                        <?php endif; ?>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                </select>
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <label class="col-md-4 offset-md-1 col-form-label" for="fullname">
                                 Full Name <span class="text-danger">*</span>
@@ -40,16 +60,6 @@
                                 <input type="text" autocomplete="off" 
                                 class="form-control" id="username" 
                                 name="username" placeholder="Username" required>
-                            </div>
-                        </div>                        
-                        <div class="form-group row">
-                            <label class="col-md-4 offset-md-1 col-form-label" for="password">
-                                Password <span class="text-danger">*</span>
-                            </label>
-                            <div class="col-md-6">
-                                <input type="password" pattern="((?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$)" 
-                                class="form-control" id="password" 
-                                name="password" title="UpperCase, LowerCase, Number/SpecialChar and min 6 Chars." minlength="6" placeholder="Create Password" required>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -80,6 +90,16 @@
                                 <input type="text" autocomplete="off" 
                                 class="form-control" id="email" 
                                 name="email" placeholder="Email" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-4 offset-md-1 col-form-label" for="institute">
+                                Institute <span class="text-danger">*</span>
+                            </label>
+                            <div class="col-md-6">
+                                <input type="text" autocomplete="off" 
+                                class="form-control" id="institute" 
+                                name="institute" placeholder="Institute" required>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -134,4 +154,5 @@
     </div>
 </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('trainer.layout.base', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
