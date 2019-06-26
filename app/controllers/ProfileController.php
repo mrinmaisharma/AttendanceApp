@@ -11,6 +11,7 @@ use App\Classes\Mail;
 use App\Models\Batch;
 use App\Models\Student;
 use App\Models\Trainer;
+use App\Models\Admin;
 
 class ProfileController extends BaseController
 {
@@ -35,9 +36,12 @@ class ProfileController extends BaseController
     }
 
     public function showMasterProfile() {
+        $user=user();
+        $master = Admin::where('username', $user['username'])->first();
+
         $batches=Batch::all();
         $students=Student::all();
-        return view('app/profile', ['batches'=>$batches, 'students'=>$students]);
+        return view('app/profile', ['batches'=>$batches, 'countOfStudents'=>count($students), 'master'=>$master]);
     }
 }
 

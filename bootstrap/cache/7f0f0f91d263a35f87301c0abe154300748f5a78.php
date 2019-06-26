@@ -11,8 +11,8 @@
                     <div class="media align-items-center mb-4">
                         <img class="mr-3" src="/images/avatar/default.png" width="80" height="80" alt="">
                         <div class="media-body">
-                            <h3 class="mb-0">Master User</h3>
-                            <p class="text-muted mb-0">admin</p>
+                            <h3 class="mb-0"><?php echo e($master['name']); ?></h3>
+                            <p class="text-muted mb-0"><?php echo e(user()['role']); ?></p>
                         </div>
                     </div>
                     
@@ -27,9 +27,18 @@
                         <div class="col">
                             <div class="card card-profile text-center">
                                 <span class="mb-1 text-primary"><i class="icon-people"></i></span>
-                                <h3 class="mb-0"><?php echo e(count($students)); ?></h3>
+                                <h3 class="mb-0"><?php echo e($countOfStudents); ?></h3>
                                 <p class="text-muted px-4">Students</p>
                             </div>
+                        </div>
+                        <div class="col-md-12">
+                            <br>
+                            <p class="text-muted mb-0 text-center"><?php echo e($master['address']); ?></p>
+                            <p class="text-muted mb-0 text-center"><?php echo e($master['city']); ?></p>
+                            <p class="text-muted mb-0 text-center"><?php echo e($master['state']); ?></p>
+                            <p class="text-muted mb-0 text-center"><?php echo e($master['pincode']); ?></p>
+                            <br>
+                            <br>
                         </div>
                         <div class="col-12 text-center">
                             <button class="btn btn-danger px-5">Edit Profile</button>
@@ -43,26 +52,31 @@
                 <div class="card-body">
                     <table>
                         <tr>
-                            <td><strong class="text-dark mr-4">Mobile</strong></td>
+                            <td><strong class="text-dark mr-4">Username</strong></td>
                             <td width="25">:</td>
-                            <td>01793931609</td>
+                            <td><?php echo e($master['username']); ?></td>
+                        </tr>
+                        <tr>
+                            <td><strong class="text-dark mr-4">Phone Number</strong></td>
+                            <td width="25">:</td>
+                            <td><?php echo e($master['phn_number']); ?></td>
+                        </tr>
+                        <tr>
+                            <td><strong class="text-dark mr-4">WhatsApp Number</strong></td>
+                            <td width="25">:</td>
+                            <td><?php echo e($master['whatsapp_number']); ?></td>
                         </tr>
                         <tr>
                             <td><strong class="text-dark mr-4">Email</strong></td>
                             <td width="25">:</td>
-                            <td>name@domain.com</td>
-                        </tr>
-                        <tr>
-                            <td><strong class="text-dark mr-4">Username</strong></td>
-                            <td width="25">:</td>
-                            <td>masteruser</td>
+                            <td><?php echo e($master['email']); ?></td>
                         </tr>
                     </table>
                 </div>
             </div>
             <div class="card">
                 <div class="card-body">
-                    <form action="#" method="post">
+                    <form action="/password/reset" method="post">
                         <h4 style="color: inherit;"><strong>Change Password</strong></h4>
                         <div class="form-group row">
                             <label class="col-lg-4 col-form-label" for="val-old-password">Current Password <span class="text-danger">*</span>

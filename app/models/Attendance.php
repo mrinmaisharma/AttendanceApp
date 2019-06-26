@@ -6,30 +6,31 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Carbon\Carbon;
 
-class User extends Model
+class Attendance extends Model
 {
     use SoftDeletes;
     
     public $timestamps=true; //to allow auto updation of created_at & updated_at
-    protected $fillable=['role', 'username', 'password'];
+    protected $fillable=['batch_id', 'student_id', 'date_of_attd', 'status'];
     protected $dates=['deleted_at'];
     
     public function transform($data) {
-        $users=[];
+        $records=[];
         foreach($data as $item) {
             $modified=new Carbon($item->updated_at);
+            $date=new Carbon($item->date_of_attd);
             $end=($item->end_date==null) ? null : new Carbon($item->end_date);
-            array_push($users, [
+            array_push($records, [
                 'id'=>$item->id,
-                'role'=>$item->role,
-                'username'=>$item->username,
-                'password'=>$item->password,
-                'trainer_id'=>$item->trainer_id,
-                'lastmodified'=>$modified->toFormattedDateString()." | ".$modified->format('h:i a') 
+                'batch_id'=>$item->batch_id,
+                'student_id'=>$item->student_id,
+                'date_of_attd'=>$date->toFormattedDateString(),
+                'status'=>$item->status,
+                'lastmodified'=>$modified->toFormattedDateString() 
             ]);
         }
         
-        return $users;
+        return $records;
     }
 }
 

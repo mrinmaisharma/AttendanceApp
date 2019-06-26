@@ -25,7 +25,9 @@
                         </div>
                         <div class="col-md-12 text-center">
                             <a href="/batch/{{$batch['id']}}/students" class="btn btn-sm mb-1 btn-rounded btn-outline-primary pull-left" style="margin: 0.1rem 0;">View Students</a>
+                            @if($batch['end_date']==null)
                             <a href="/batch/{{$batch['id']}}/mark/attendance" class="btn btn-sm mb-1 btn-rounded btn-outline-danger pull-right" style="margin: 0.1rem 0;">Mark Attendance</a>
+                            @endif
                         </div>
                     </div>
                 </div>

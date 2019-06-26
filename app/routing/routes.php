@@ -33,6 +33,10 @@ $router->map('GET', '/batch/[i:id]/students', 'App\Controllers\StudentController
 $router->map('GET', '/master/student/add', 'App\Controllers\StudentController@showAddStudentPage', 'add_student_page');
 $router->map('POST', '/master/student/add', 'App\Controllers\StudentController@create', 'add_student');
 
+/*attendance*/
+$router->map('GET', '/batch/[i:id]/mark/attendance', 'App\Controllers\AttendanceController@markAttendancePage', 'mark_attendance');
+$router->map('POST', '/batch/[i:id]/mark/attendance', 'App\Controllers\AttendanceController@save', 'save_attendance');
+
 /*nitish*/
 require_once __DIR__ . '/nitishroutes.php';
 

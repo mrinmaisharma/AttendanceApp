@@ -24,7 +24,9 @@
                         </div>
                         <div class="col-md-12 text-center">
                             <a href="/batch/<?php echo e($batch['id']); ?>/students" class="btn btn-sm mb-1 btn-rounded btn-outline-primary pull-left" style="margin: 0.1rem 0;">View Students</a>
+                            <?php if($batch['end_date']==null): ?>
                             <a href="/batch/<?php echo e($batch['id']); ?>/mark/attendance" class="btn btn-sm mb-1 btn-rounded btn-outline-danger pull-right" style="margin: 0.1rem 0;">Mark Attendance</a>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>

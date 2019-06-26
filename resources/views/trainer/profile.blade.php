@@ -1,4 +1,4 @@
-@extends('app.layout.base')
+@extends('trainer.layout.base')
 @section('title', 'Profile')
 
 
