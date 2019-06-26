@@ -34,7 +34,6 @@ class BatchController extends BaseController
                 Redirect::to('/');
             }
         }
-        
         if(Request::has('post')) {
             $request=Request::get('post');
             
@@ -58,10 +57,10 @@ class BatchController extends BaseController
                     Redirect::to("/master/batches");
                     exit;
                 }
-                $batch=Batch::where('id', $id['id'])->update([
+                Batch::where('id', $id['id'])->update([
                     'trainer_id'=>$request->trainer_id
                 ]);
-
+                
                 Session::add('success', 'Trainer Assigned');
                 Redirect::to('/master/batches');
             }
@@ -86,6 +85,16 @@ class BatchController extends BaseController
     }
 
     public function showBatches() {
+        if(!isAuthenticated()) {
+            Redirect::to('/');
+        }
+        else if(isAuthenticated()) {
+            $user=user();
+            if($user->role!='admin') {
+                Redirect::to('/');
+            }
+        }
+
         $batches=$this->batches;
         for($i = 0; $i < count($batches); $i++) {
             $batches[$i]['students'] = Student::where('batch_id', $batches[$i]['id'])->get();
