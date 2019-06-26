@@ -24,6 +24,67 @@ class BatchController extends BaseController
         $this->batches=fetch($this->table_name, $object);        
     }
 
+    public function assignTrainer($id) {
+        if(!isAuthenticated()) {
+            Redirect::to('/');
+        }
+        else if(isAuthenticated()) {
+            $user=user();
+            if($user->role!='admin') {
+                Redirect::to('/');
+            }
+        }
+        
+        if(Request::has('post')) {
+            $request=Request::get('post');
+            
+            if(CSRFToken::verifyCSRFToken($request->token)) {
+                $rules=[
+                    'trainer_id'=>['required'=>true]
+                ];
+                
+                $validate=new ValidateRequest;
+                $validate->abide($_POST, $rules);
+
+                if($validate->hasError()) {
+                    $errors=$validate->getErrorMessages();
+                    $msg="";
+                    foreach($errors as $error) {
+                        foreach($error as $e) {
+                            $msg.=$e."<br/>";
+                        }
+                    }
+                    Session::add('error', $msg);
+                    Redirect::to("/master/batches");
+                    exit;
+                }
+                $batch=Batch::where('id', $id['id'])->update([
+                    'trainer_id'=>$request->trainer_id
+                ]);
+
+                Session::add('success', 'Trainer Assigned');
+                Redirect::to('/master/batches');
+            }
+            throw new \Exception('Token mismatch');
+        }
+    }
+
+    public function showTrainerBatches() {
+        $user=user();
+        $trainer_id = Trainer::where('username', $user['username'])->first()['id'];
+
+        $batches=Batch::where('trainer_id', $trainer_id)->get();
+        for($i = 0; $i < count($batches); $i++) {
+            $batches[$i]['students'] = Student::where('batch_id', $batches[$i]['id'])->get();
+            $start = new Carbon($batches[$i]['start_date']);
+            $batches[$i]['start_date'] = $start->toFormattedDateString();
+            if($batches[$i]['students'] == null) {
+                $batches[$i]['students']=array();
+            }
+        }
+        return view('trainer/batches', [ 'batches'=>$batches ]);
+    }
+
     public function showBatches() {
         $batches=$this->batches;
         for($i = 0; $i < count($batches); $i++) {
@@ -37,15 +98,16 @@ class BatchController extends BaseController
     }
     
     public function create() {
-        // if(!isAuthenticated()) {
-        //     Redirect::to('/');
-        // }
-        // else if(isAuthenticated()) {
-        //     $user=User::where('username', Session::get('SESSION_USER_NAME'))->first();
-        //     if($user->role!='admin') {
-        //         Redirect::to('/');
-        //     }
-        // }
+        if(!isAuthenticated()) {
+            Redirect::to('/');
+        }
+        else if(isAuthenticated()) {
+            $user=user();
+            if($user->role!='admin') {
+                Redirect::to('/');
+            }
+        }
+        
         if(Request::has('post')) {
             $request=Request::get('post');
             $errors=[];

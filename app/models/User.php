@@ -29,7 +29,7 @@ class User extends Model
             ]);
         }
         
-        return $batches;
+        return $users;
     }
 }
 

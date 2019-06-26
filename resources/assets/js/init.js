@@ -10,7 +10,8 @@
         
         //switch pages
         switch ($("body").data("page-id")) {
-            case 'dashboard':
+            case 'login':
+                ATTD.global.auth();
                 break;
             default:
                 //do nothing

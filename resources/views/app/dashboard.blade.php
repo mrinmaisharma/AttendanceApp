@@ -113,7 +113,7 @@
                                     <td style="text-align:center">
                                         <span class="total-students text-pale-sky">
                                             <i class="fa fa-users mr-3"></i>
-                                            <span class="label gradient-8 btn-rounded">{{count($batch[students])}}</span>
+                                            <span class="label gradient-8 btn-rounded">{{count($batch['students'])}}</span>
                                         </span>
                                     </td>
                                 </tr>

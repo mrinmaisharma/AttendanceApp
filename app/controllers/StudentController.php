@@ -29,8 +29,35 @@ class StudentController extends BaseController
         }
         return view('app/students', ['students'=>$students]);
     }
+
+    public function showBatchStudents($id) {
+        if(!isAuthenticated()) {
+            Redirect::to('/');
+        }
+        else if(isAuthenticated()) {
+            $user=user();
+            if($user->role=='admin') {
+                Redirect::to('/');
+            }
+        }
+        
+        $batch=Batch::where('id', $id['id'])->first();
+        $students=Student::where('batch_id', $id['id'])->get();
+        
+        return view('trainer/batch-students', ['students'=>$students, 'batch'=>$batch]);
+    }
     
     public function showAddStudentPage() {
+        if(!isAuthenticated()) {
+            Redirect::to('/');
+        }
+        else if(isAuthenticated()) {
+            $user=user();
+            if($user->role!='admin') {
+                Redirect::to('/');
+            }
+        }
+        
         $batch=null;
         if(Request::has('get')) {
             $request=Request::get('get');
@@ -42,15 +69,16 @@ class StudentController extends BaseController
     }
 
     public function create() {
-        // if(!isAuthenticated()) {
-        //     Redirect::to('/');
-        // }
-        // else if(isAuthenticated()) {
-        //     $user=User::where('username', Session::get('SESSION_USER_NAME'))->first();
-        //     if($user->role!='admin') {
-        //         Redirect::to('/');
-        //     }
-        // }
+        if(!isAuthenticated()) {
+            Redirect::to('/');
+        }
+        else if(isAuthenticated()) {
+            $user=User::where('username', Session::get('SESSION_USER_NAME'))->first();
+            if($user->role!='admin') {
+                Redirect::to('/');
+            }
+        }
+        
         if(Request::has('post')) {
             $request=Request::get('post');
             $errors=[];

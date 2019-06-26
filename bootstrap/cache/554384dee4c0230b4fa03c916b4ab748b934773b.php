@@ -26,13 +26,13 @@
                                 Batch <span class="text-danger">*</span>
                             </label>
                             <div class="col-md-6">
-                                <select class="form-control" name="batch_id" id="batch">
-                                    <option val="" <?php echo e(($batch!=null) ? 'selected': ''); ?>>Select Batch</option>
+                                <select class="form-control" name="batch_id" id="batch" required>
+                                    <option value="" <?php echo e(($batch!=null) ? 'selected': ''); ?>>Select Batch</option>
                                     <?php $__currentLoopData = \App\Models\Batch::all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $b): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <?php if($batch!=null): ?>
-                                            <option val="<?php echo e($b['id']); ?>" <?php echo e(($b['id'] == $batch['id']) ? 'selected': ''); ?>><?php echo e($b['name']); ?></option>
+                                            <option value="<?php echo e($b['id']); ?>" <?php echo e(($b['id'] == $batch['id']) ? 'selected': ''); ?>><?php echo e($b['name']); ?></option>
                                         <?php else: ?>
-                                            <option val="<?php echo e($b['id']); ?>"><?php echo e($b['name']); ?></option>
+                                            <option value="<?php echo e($b['id']); ?>"><?php echo e($b['name']); ?></option>
                                         <?php endif; ?>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </select>

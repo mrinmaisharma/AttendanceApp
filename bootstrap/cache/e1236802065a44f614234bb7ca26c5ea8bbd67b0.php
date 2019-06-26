@@ -38,6 +38,13 @@
     <!-- Daterange picker plugins css -->
     <link href="/plugins/timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
 
+    <style>
+        input[type=checkbox]:checked {
+            content: '✔' !important;
+            background-color:white !important;
+        }
+    </style>
+
 </head>
 
 <body data-page-id="<?php echo $__env->yieldContent('data-page-id'); ?>">
@@ -93,16 +100,15 @@
 <script type="text/javascript" src="/plugins/moment/moment.min.js"></script>
 <script type="text/javascript" src="/plugins/pg-calendar/js/pignose.calendar.min.js"></script>
 <!-- <script type="text/javascript" src="/js/dashboard/dashboard-1.js"></script> -->
-<script src="/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+<script type="text/javascript" src="/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
 <!-- Date Picker Plugin JavaScript -->
-<script src="/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript" src="/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
 <!-- Date range Plugin JavaScript -->
-<script src="/plugins/timepicker/bootstrap-timepicker.min.js"></script>
+<script type="text/javascript" src="/plugins/timepicker/bootstrap-timepicker.min.js"></script>
 <!-- DataTable -->
-<script src="/plugins/tables/js/jquery.dataTables.min.js"></script>
-<script src="/plugins/tables/js/datatable/dataTables.bootstrap4.min.js"></script>
-<script src="/plugins/tables/js/datatable-init/datatable-basic.min.js"></script>
-
+<script type="text/javascript" src="/plugins/tables/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="/plugins/tables/js/datatable/dataTables.bootstrap4.min.js"></script>
+<script type="text/javascript" src="/plugins/tables/js/datatable-init/datatable-basic.min.js"></script>
 
 <script>
     (function($) {
@@ -126,6 +132,7 @@
             setDate: new Date(),
             autoclose: true
         });
+
 
     })(jQuery);
 </script>
