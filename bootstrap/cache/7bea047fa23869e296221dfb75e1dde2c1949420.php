@@ -19,6 +19,7 @@
     ********************-->
     <div id="preloader">
         <div class="loader">
+            <img src="/images/symbol.png" style="margin-top:3.2rem;margin-left:1rem" width="50" height="50" alt="Arbre">
             <svg class="circular" viewBox="25 25 50 50">
                 <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
             </svg>
