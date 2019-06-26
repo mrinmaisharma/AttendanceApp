@@ -25,12 +25,12 @@
                             <a href="#" class="badge badge-pill badge-primary pull-right" style="margin: 0.1rem 0;">View Details</a>
                         </div>
                         <div class="col-12">
-                            <button type="button" class="btn mb-1 btn-rounded btn-outline-info" data-toggle="modal" data-target="#basicModal" style="margin-top:1em; font-size:0.8rem;">Assign Trainer</button>
+                            <button type="button" class="btn mb-1 btn-rounded btn-outline-info" data-toggle="modal" data-target="#assignTrainerModal<?php echo e($batch['id']); ?>" style="margin-top:1em; font-size:0.8rem;">Assign Trainer</button>
                             <a href="/master/student/add?batch_id=<?php echo e($batch['id']); ?>" class="btn mb-1 btn-rounded btn-outline-primary float-right"style="margin-top:1em; font-size:0.8rem;">+ Students</a>
                         </div>
                     </div>
                     <!-- Modal -->
-                    <div class="modal fade" id="basicModal" style="display: none;" aria-hidden="true">
+                    <div class="modal fade" id="assignTrainerModal<?php echo e($batch['id']); ?>" style="display: none;" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <form action="/batch/<?php echo e($batch['id']); ?>/assign/trainer" method="post">
                                 <div class="modal-content">

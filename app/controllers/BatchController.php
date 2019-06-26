@@ -57,10 +57,7 @@ class BatchController extends BaseController
                     Redirect::to("/master/batches");
                     exit;
                 }
-                Batch::where('id', $id['id'])->update([
-                    'trainer_id'=>$request->trainer_id
-                ]);
-                
+                Batch::where('id', $id)->update(['trainer_id'=>$request->trainer_id]);
                 Session::add('success', 'Trainer Assigned');
                 Redirect::to('/master/batches');
             }

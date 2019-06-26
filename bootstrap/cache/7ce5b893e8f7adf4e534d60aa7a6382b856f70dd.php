@@ -67,7 +67,7 @@
                             </label>
                             <div class="col-lg-6">
                                 <div class="input-group">
-                                    <input type="text" autocomplete="off" class="form-control datepicker" name="start_date" id="startDate" placeholder="yyyy-mm-dd" required>
+                                    <input style="padding-left:1rem;" type="text" autocomplete="off" class="form-control datepicker" name="start_date" id="startDate" placeholder="yyyy-mm-dd" required>
                                     <span class="input-group-append">
                                         <span class="input-group-text">
                                             <i class="mdi mdi-calendar-check"></i>
@@ -81,7 +81,7 @@
                             </label>
                             <div class="col-lg-6">
                             <div class="input-group">
-                                    <input type="text" autocomplete="off" class="form-control datepicker" name="end_date" id="endDate" placeholder="yyyy-mm-dd">
+                                    <input style="padding-left:1rem;" type="text" autocomplete="off" class="form-control datepicker" name="end_date" id="endDate" placeholder="yyyy-mm-dd">
                                     <span class="input-group-append">
                                         <span class="input-group-text">
                                             <i class="mdi mdi-calendar-check"></i>

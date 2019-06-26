@@ -23,10 +23,10 @@
                                 <div class="stat-widget-one">
                                     <div class="stat-content">
                                         <div class="stat-text">Attendance</div>
-                                        <div class="stat-digit gradient-3-text"><i class="fa fa-usd"></i>{{($total !=0 ) ? ($present/$total)*100 : 0}}%</div>
+                                        <div class="stat-digit gradient-3-text"><i class="fa fa-usd"></i>{{($total !=0 ) ? floor(($present/$total)*100) : 0}}%</div>
                                     </div>
                                     <div class="progress mb-3">
-                                        <div class="progress-bar gradient-3" style="width: {{($total !=0 ) ? ($present/$total)*100 : 0}}%;" role="progressbar"><span class="sr-only">{{($total !=0 ) ? ($present/$total)*100 : 0}}% Attendance</span>
+                                        <div class="progress-bar gradient-3" style="width: {{($total !=0 ) ? floor(($present/$total)*100) : 0}}%;" role="progressbar"><span class="sr-only">{{($total !=0 ) ? floor(($present/$total)*100) : 0}}% Attendance</span>
                                         </div>
                                     </div>
                                 </div>
