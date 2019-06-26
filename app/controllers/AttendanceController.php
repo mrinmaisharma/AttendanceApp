@@ -12,29 +12,41 @@ use App\Models\Batch;
 use App\Models\Student;
 use App\Models\Trainer;
 use App\Models\Attendance;
+use Carbon\Carbon;
 
-class ProfileController extends BaseController
+class AttendanceController extends BaseController
 {
     public function __construct() {
         
     }
 
     public function markAttendancePage($id) {
+        if(!isAuthenticated()) {
+            Redirect::to('/');
+        }
+        else if(isAuthenticated()) {
+            $user=user();
+            if($user->role=='admin') {
+                Redirect::to('/');
+            }
+        }
+
         $batch=Batch::where('id', $id['id'])->first();
         $students=Student::where('batch_id', $id['id'])->get();
         return view('trainer/markattendance', ['batch'=>$batch, 'students'=>$students]);
     }
 
     public function save() {
-        // if(!isAuthenticated()) {
-        //     Redirect::to('/');
-        // }
-        // else if(isAuthenticated()) {
-        //     $user=User::where('username', Session::get('SESSION_USER_NAME'))->first();
-        //     if($user->role!='admin') {
-        //         Redirect::to('/');
-        //     }
-        // }
+        if(!isAuthenticated()) {
+            Redirect::to('/');
+        }
+        else if(isAuthenticated()) {
+            $user=user();
+            if($user->role=='admin') {
+                Redirect::to('/');
+            }
+        }
+
         if(Request::has('post')) {
             $request=Request::get('post');
             $errors=[];
@@ -43,7 +55,6 @@ class ProfileController extends BaseController
                     'batch_id'=>['required'=>true],
                     'date_of_attd'=>['required'=>true],
                 ];
-                
                 $validate=new ValidateRequest;
                 $validate->abide($_POST, $rules);
                 
@@ -61,13 +72,13 @@ class ProfileController extends BaseController
                 }
                 //process form data
                 $students=Student::where('batch_id', $request->batch_id)->get();
+
                 foreach($students as $student) {
-                    $sid='std'.$student['id'];
                     $status='status'.$student['id'];
                     Attendance::create([
                         'batch_id'=>$request->batch_id,
-                        'student_id'=>$request->$sid,
-                        'dateof_attd'=>Carbon::createFromFormat('Y-m-d h-i-s', $request->dat_of_attd.'00-00-00'),
+                        'student_id'=>$student['id'],
+                        'date_of_attd'=>Carbon::createFromFormat('Y-m-d h-i-s', $request->date_of_attd.'00-00-00'),
                         'status'=>$request->$status
                     ]);
                 }

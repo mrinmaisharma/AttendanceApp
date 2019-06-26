@@ -5,6 +5,9 @@
 
 <div class="container-fluid batches">
     <div class="row">
+        <div class="col-md-12">
+            <?php echo $__env->make('includes.form_alert', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        </div>
         <?php if(count($batches)): ?>
         <?php $__currentLoopData = $batches; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $batch): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <div class="col-sm-6 col-lg-4">

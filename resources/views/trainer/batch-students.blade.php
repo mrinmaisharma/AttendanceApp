@@ -1,15 +1,16 @@
-<?php $__env->startSection('title', 'Students'); ?>
+@extends('trainer.layout.base')
+@section('title', 'Batch Students')
 
 
-<?php $__env->startSection('content'); ?>
+@section('content')
 
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
-            <?php echo $__env->make('includes.form_alert', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+            @include('includes.form_alert')
         </div>
         <div class="col-md-12">
-            <a href="/student/add" class="btn mb-1 btn-rounded btn-outline-info">
+            <a href="/student/add?batch_id={{$batch['id']}}" class="btn mb-1 btn-rounded btn-outline-info">
                 <i class="fa fa-plus"></i> Add Student
             </a>
             <br>
@@ -20,40 +21,40 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Student Details</h4>
+                    <h4 class="card-title"><strong>Batch:</strong> {{$batch['name']}}</h4>
                     <div class="table-responsive"> 
-                        <?php if(count($students)): ?>
+                        @if(count($students))
                         <div class="table-responsive">
                             <table id="myDataTable" class="table table-hover table-bordered zero-configuration table-striped verticle-middle">
                                 <thead>
                                     <tr>
+                                        <th scope="col">username</th>
                                         <th scope="col">Full Name</th>
                                         <th scope="col">Phone No.</th>
                                         <th scope="col">Email</th>
-                                        <th scope="col">Batch Alloted</th>
                                         <th scope="col">Details</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $__currentLoopData = $students; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $student): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    @foreach($students as $student)
                                     <tr>
-                                        <td><?php echo e($student['name']); ?></td>
-                                        <td><?php echo e($student['phn_number']); ?></td>
-                                        <td><?php echo e($student['email']); ?></td>
-                                        <td><?php echo e($student['batch']['name']); ?></td>
+                                        <td>{{$student['username']}}</td>
+                                        <td>{{$student['name']}}</td>
+                                        <td>{{$student['phn_number']}}</td>
+                                        <td>{{$student['email']}}</td>
                                         <td>
-                                            <a href="/student/<?php echo e($student['id']); ?>/profile" class="btn mb-1 btn-rounded btn-primary">
+                                            <a href="/student/{{$student['id']}}/profile" class="btn mb-1 btn-rounded btn-primary">
                                                 View Details
                                             </a>
                                         </td>
                                     </tr>
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>                        
+                                    @endforeach                        
                                 </tbody>
                             </table>
                         </div>
-                        <?php else: ?>
+                        @else
                         <h5 class="text-center">No Records found</h5>
-                        <?php endif; ?>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -61,5 +62,4 @@
     </div>
 </div>
 
-<?php $__env->stopSection(); ?>
-<?php echo $__env->make('trainer.layout.base', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+@endsection

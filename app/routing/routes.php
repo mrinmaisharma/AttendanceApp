@@ -8,6 +8,7 @@ $router->map('GET', '/', 'App\Controllers\IndexController@showDashboard', 'dashb
 /*profile*/
 $router->map('GET', '/master/profile', 'App\Controllers\ProfileController@showMasterProfile', 'profile');
 $router->map('GET', '/trainer/profile', 'App\Controllers\ProfileController@showTrainerProfile', 'trainer_profile');
+$router->map('GET', '/student/[i:id]/profile', 'App\Controllers\ProfileController@showStudentProfile', 'student_profile');
 
 /*auth*/
 $router->map('GET', '/login', 'App\Controllers\AuthController@showLoginForm', 'login_form');

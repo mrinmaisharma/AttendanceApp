@@ -1,4 +1,4 @@
-<?php $__env->startSection('title', 'Students'); ?>
+<?php $__env->startSection('title', 'Batch Students'); ?>
 
 
 <?php $__env->startSection('content'); ?>
@@ -9,7 +9,7 @@
             <?php echo $__env->make('includes.form_alert', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
         </div>
         <div class="col-md-12">
-            <a href="/student/add" class="btn mb-1 btn-rounded btn-outline-info">
+            <a href="/student/add?batch_id=<?php echo e($batch['id']); ?>" class="btn mb-1 btn-rounded btn-outline-info">
                 <i class="fa fa-plus"></i> Add Student
             </a>
             <br>
@@ -20,27 +20,27 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Student Details</h4>
+                    <h4 class="card-title"><strong>Batch:</strong> <?php echo e($batch['name']); ?></h4>
                     <div class="table-responsive"> 
                         <?php if(count($students)): ?>
                         <div class="table-responsive">
                             <table id="myDataTable" class="table table-hover table-bordered zero-configuration table-striped verticle-middle">
                                 <thead>
                                     <tr>
+                                        <th scope="col">username</th>
                                         <th scope="col">Full Name</th>
                                         <th scope="col">Phone No.</th>
                                         <th scope="col">Email</th>
-                                        <th scope="col">Batch Alloted</th>
                                         <th scope="col">Details</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $__currentLoopData = $students; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $student): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <tr>
+                                        <td><?php echo e($student['username']); ?></td>
                                         <td><?php echo e($student['name']); ?></td>
                                         <td><?php echo e($student['phn_number']); ?></td>
                                         <td><?php echo e($student['email']); ?></td>
-                                        <td><?php echo e($student['batch']['name']); ?></td>
                                         <td>
                                             <a href="/student/<?php echo e($student['id']); ?>/profile" class="btn mb-1 btn-rounded btn-primary">
                                                 View Details

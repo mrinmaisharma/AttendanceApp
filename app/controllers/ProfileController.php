@@ -12,6 +12,7 @@ use App\Models\Batch;
 use App\Models\Student;
 use App\Models\Trainer;
 use App\Models\Admin;
+use App\Models\Attendance;
 
 class ProfileController extends BaseController
 {
@@ -20,6 +21,16 @@ class ProfileController extends BaseController
     }
 
     public function showTrainerProfile() {
+        if(!isAuthenticated()) {
+            Redirect::to('/');
+        }
+        else if(isAuthenticated()) {
+            $user=user();
+            if($user->role=='admin') {
+                Redirect::to('/');
+            }
+        }
+        
         $user=user();
         $trainer = Trainer::where('username', $user['username'])->first();
 
@@ -36,6 +47,16 @@ class ProfileController extends BaseController
     }
 
     public function showMasterProfile() {
+        if(!isAuthenticated()) {
+            Redirect::to('/');
+        }
+        else if(isAuthenticated()) {
+            $user=user();
+            if($user->role!='admin') {
+                Redirect::to('/');
+            }
+        }
+        
         $user=user();
         $master = Admin::where('username', $user['username'])->first();
 
@@ -43,6 +64,22 @@ class ProfileController extends BaseController
         $students=Student::all();
         return view('app/profile', ['batches'=>$batches, 'countOfStudents'=>count($students), 'master'=>$master]);
     }
+    
+    public function showStudentProfile($id) {
+        $user=user();
+        $student = Student::where('id', $id['id'])->first();
+
+        $total=count(Attendance::where('student_id', $id['id'])->get());
+        $present=count(Attendance::where([['student_id', $id['id']], ['status', 'present']])->get());
+        $absent=$total-$present;
+
+        if($user['role']=='admin')
+            return view('app/student-profile', ['student'=>$student, 'total'=>$total, 'present'=>$present, 'absent'=>$absent]);
+        elseif($user['role']=='trainer')
+            return view('trainer/student-profile', ['student'=>$student, 'total'=>$total, 'present'=>$present, 'absent'=>$absent]);
+
+    }
+
 }
 
 ?>

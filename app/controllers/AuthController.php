@@ -16,11 +16,17 @@ class AuthController extends BaseController
         
     }
     
-   public function showLoginForm() {
-       return view('auth/login');
-   }
+    public function showLoginForm() {
+        if(isAuthenticated()) {
+            Redirect::to('/');
+        }
+        return view('auth/login');
+    }
 
     public function login() {
+        if(isAuthenticated()) {
+            Redirect::to('/');
+        }
         if(Request::has('post')) {
             $errors=array();
             $request=Request::get('post');

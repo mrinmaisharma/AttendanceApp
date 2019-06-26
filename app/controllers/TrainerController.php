@@ -25,6 +25,16 @@ class TrainerController extends BaseController
     }
 
     public function showMyStudents() {
+        if(!isAuthenticated()) {
+            Redirect::to('/');
+        }
+        else if(isAuthenticated()) {
+            $user=User::where('username', Session::get('SESSION_USER_NAME'))->first();
+            if($user->role=='admin') {
+                Redirect::to('/');
+            }
+        }
+        
         $students=array();
         $user=user();
         $trainer_id = Trainer::where('username', $user['username'])->first()['id'];
@@ -41,6 +51,16 @@ class TrainerController extends BaseController
     }
     
     public function showAddStudentPage() {
+        if(!isAuthenticated()) {
+            Redirect::to('/');
+        }
+        else if(isAuthenticated()) {
+            $user=User::where('username', Session::get('SESSION_USER_NAME'))->first();
+            if($user->role=='admin') {
+                Redirect::to('/');
+            }
+        }
+        
         $batch=null;
         if(Request::has('get')) {
             $request=Request::get('get');
@@ -52,15 +72,16 @@ class TrainerController extends BaseController
     }
     
     public function addStudent() {
-        // if(!isAuthenticated()) {
-        //     Redirect::to('/');
-        // }
-        // else if(isAuthenticated()) {
-        //     $user=User::where('username', Session::get('SESSION_USER_NAME'))->first();
-        //     if($user->role!='admin') {
-        //         Redirect::to('/');
-        //     }
-        // }
+        if(!isAuthenticated()) {
+            Redirect::to('/');
+        }
+        else if(isAuthenticated()) {
+            $user=User::where('username', Session::get('SESSION_USER_NAME'))->first();
+            if($user->role=='admin') {
+                Redirect::to('/');
+            }
+        }
+        
         if(Request::has('post')) {
             $request=Request::get('post');
             $errors=[];
@@ -114,6 +135,16 @@ class TrainerController extends BaseController
     }
 
     public function showTrainers() {
+        if(!isAuthenticated()) {
+            Redirect::to('/');
+        }
+        else if(isAuthenticated()) {
+            $user=User::where('username', Session::get('SESSION_USER_NAME'))->first();
+            if($user->role!='admin') {
+                Redirect::to('/');
+            }
+        }
+        
         $trainers=$this->trainers;
         for($i = 0; $i < count($trainers); $i++) {
             $trainers[$i]['batch'] = Batch::where('trainer_id', $trainers[$i]['id'])->get();
@@ -122,19 +153,30 @@ class TrainerController extends BaseController
     }
 
     public function showAddTrainerPage() {
+        if(!isAuthenticated()) {
+            Redirect::to('/');
+        }
+        else if(isAuthenticated()) {
+            $user=User::where('username', Session::get('SESSION_USER_NAME'))->first();
+            if($user->role!='admin') {
+                Redirect::to('/');
+            }
+        }
+        
         return view('app/add-trainer');
     }
 
     public function create() {
-        // if(!isAuthenticated()) {
-        //     Redirect::to('/');
-        // }
-        // else if(isAuthenticated()) {
-        //     $user=User::where('username', Session::get('SESSION_USER_NAME'))->first();
-        //     if($user->role!='admin') {
-        //         Redirect::to('/');
-        //     }
-        // }
+        if(!isAuthenticated()) {
+            Redirect::to('/');
+        }
+        else if(isAuthenticated()) {
+            $user=User::where('username', Session::get('SESSION_USER_NAME'))->first();
+            if($user->role!='admin') {
+                Redirect::to('/');
+            }
+        }
+
         if(Request::has('post')) {
             $request=Request::get('post');
             $errors=[];

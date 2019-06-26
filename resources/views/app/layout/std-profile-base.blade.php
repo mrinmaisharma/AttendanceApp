@@ -43,6 +43,9 @@
             content: '✔' !important;
             background-color:white !important;
         }
+        select:focus {
+            box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px rgba(0, 0, 0, 0.5);
+        }
     </style>
 
 </head>
@@ -96,20 +99,6 @@
 <!-- Morrisjs -->
 <script type="text/javascript" src="/plugins/raphael/raphael.min.js"></script>
 <script type="text/javascript" src="/plugins/morris/morris.min.js"></script>
-<!-- Pignose Calender -->
-<script type="text/javascript" src="/plugins/moment/moment.min.js"></script>
-<script type="text/javascript" src="/plugins/pg-calendar/js/pignose.calendar.min.js"></script>
-<!-- <script type="text/javascript" src="/js/dashboard/dashboard-1.js"></script> -->
-<script type="text/javascript" src="/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
-<!-- Date Picker Plugin JavaScript -->
-<script type="text/javascript" src="/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
-<!-- Date range Plugin JavaScript -->
-<script type="text/javascript" src="/plugins/timepicker/bootstrap-timepicker.min.js"></script>
-<!-- DataTable -->
-<script type="text/javascript" src="/plugins/tables/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="/plugins/tables/js/datatable/dataTables.bootstrap4.min.js"></script>
-<script type="text/javascript" src="/plugins/tables/js/datatable-init/datatable-basic.min.js"></script>
-
 <script>
     (function($) {
     "use strict"
@@ -127,10 +116,19 @@
             direction: "ltr" //"ltr" = Left to Right; "rtl" = Right to Left
         });
         
-        $('.datepicker').datepicker({
-            format: "yyyy-mm-dd",
-            setDate: new Date(),
-            autoclose: true
+        
+        Morris.Donut({
+            element: 'attendance-donut-chart',
+            data: [{
+                label: "Present",
+                value: "{{$present}}",
+
+            }, {
+                label: "Absent",
+                value: "{{$absent}}"
+            }],
+            resize: true,
+            colors: ['#4d7cff', '#7571F9']
         });
 
 

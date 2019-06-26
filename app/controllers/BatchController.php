@@ -25,6 +25,16 @@ class BatchController extends BaseController
     }
 
     public function assignTrainer($id) {
+        if(!isAuthenticated()) {
+            Redirect::to('/');
+        }
+        else if(isAuthenticated()) {
+            $user=user();
+            if($user->role!='admin') {
+                Redirect::to('/');
+            }
+        }
+        
         if(Request::has('post')) {
             $request=Request::get('post');
             
@@ -88,15 +98,16 @@ class BatchController extends BaseController
     }
     
     public function create() {
-        // if(!isAuthenticated()) {
-        //     Redirect::to('/');
-        // }
-        // else if(isAuthenticated()) {
-        //     $user=User::where('username', Session::get('SESSION_USER_NAME'))->first();
-        //     if($user->role!='admin') {
-        //         Redirect::to('/');
-        //     }
-        // }
+        if(!isAuthenticated()) {
+            Redirect::to('/');
+        }
+        else if(isAuthenticated()) {
+            $user=user();
+            if($user->role!='admin') {
+                Redirect::to('/');
+            }
+        }
+        
         if(Request::has('post')) {
             $request=Request::get('post');
             $errors=[];

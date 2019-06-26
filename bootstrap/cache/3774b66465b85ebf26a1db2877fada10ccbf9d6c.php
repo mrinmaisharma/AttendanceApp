@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Attendance Portal | "@yield('title')</title>
+    <title>Attendance Portal | "<?php echo $__env->yieldContent('title'); ?></title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-sm.ico">
     <!-- Pignose Calender -->
@@ -43,11 +43,14 @@
             content: '✔' !important;
             background-color:white !important;
         }
+        select:focus {
+            box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px rgba(0, 0, 0, 0.5);
+        }
     </style>
 
 </head>
 
-<body data-page-id="@yield('data-page-id')">
+<body data-page-id="<?php echo $__env->yieldContent('data-page-id'); ?>">
     
     <!--*******************
         Preloader start
@@ -69,13 +72,13 @@
     ***********************************-->
     <div id="main-wrapper">
 
-        @include('includes.app.navbar')
-        @include('includes.app.sidebar')
+        <?php echo $__env->make('includes.trainer.navbar', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        <?php echo $__env->make('includes.trainer.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
         <div class="content-body" style="min-height: 788px;">
         <!-- Main -->
-            @yield('content')
+            <?php echo $__env->yieldContent('content'); ?>
         </div>
-        @include('includes.app.footer')
+        <?php echo $__env->make('includes.app.footer', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
     </div>
     <!--**********************************
@@ -100,16 +103,15 @@
 <script type="text/javascript" src="/plugins/moment/moment.min.js"></script>
 <script type="text/javascript" src="/plugins/pg-calendar/js/pignose.calendar.min.js"></script>
 <!-- <script type="text/javascript" src="/js/dashboard/dashboard-1.js"></script> -->
-<script type="text/javascript" src="/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+<script src="/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
 <!-- Date Picker Plugin JavaScript -->
-<script type="text/javascript" src="/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+<script src="/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
 <!-- Date range Plugin JavaScript -->
-<script type="text/javascript" src="/plugins/timepicker/bootstrap-timepicker.min.js"></script>
+<script src="/plugins/timepicker/bootstrap-timepicker.min.js"></script>
 <!-- DataTable -->
-<script type="text/javascript" src="/plugins/tables/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="/plugins/tables/js/datatable/dataTables.bootstrap4.min.js"></script>
-<script type="text/javascript" src="/plugins/tables/js/datatable-init/datatable-basic.min.js"></script>
-
+<script src="/plugins/tables/js/jquery.dataTables.min.js"></script>
+<script src="/plugins/tables/js/datatable/dataTables.bootstrap4.min.js"></script>
+<script src="/plugins/tables/js/datatable-init/datatable-basic.min.js"></script>
 <script>
     (function($) {
     "use strict"
@@ -127,10 +129,19 @@
             direction: "ltr" //"ltr" = Left to Right; "rtl" = Right to Left
         });
         
-        $('.datepicker').datepicker({
-            format: "yyyy-mm-dd",
-            setDate: new Date(),
-            autoclose: true
+        Morris.Donut({
+            element: 'attendance-donut-chart',
+            data: [{
+                    label: "Present",
+                    value: "<?php echo e($present); ?>",
+                    }, 
+                    {
+                        label: "Absent",
+                        value: "<?php echo e($absent); ?>"
+                    }
+                ],
+            resize: true,
+            colors: ['#4d7cff', '#7571F9']
         });
 
 

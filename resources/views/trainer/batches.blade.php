@@ -6,6 +6,9 @@
 
 <div class="container-fluid batches">
     <div class="row">
+        <div class="col-md-12">
+            @include('includes.form_alert')
+        </div>
         @if(count($batches))
         @foreach($batches as $batch)
         <div class="col-sm-6 col-lg-4">
