@@ -19,6 +19,8 @@ $router->map('GET', '/logout', 'App\Controllers\AuthController@logout', 'logout'
 $router->map('GET', '/master/batches', 'App\Controllers\BatchController@showBatches', 'batches');
 $router->map('GET', '/batches', 'App\Controllers\BatchController@showTrainerBatches', 'trainer_batches');
 $router->map('POST', '/batch/[i:id]/assign/trainer', 'App\Controllers\BatchController@assignTrainer', 'assign_trainer');
+$router->map('GET', '/batch/[i:id]/edit', 'App\Controllers\BatchController@showEditBatchPage', 'edit_batch_page');
+$router->map('POST', '/batch/[i:id]/edit', 'App\Controllers\BatchController@edit', 'edit_batch');
 
 /*trainer*/
 $router->map('GET', '/master/trainers', 'App\Controllers\TrainerController@showTrainers', 'trainers');

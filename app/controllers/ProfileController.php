@@ -68,8 +68,9 @@ class ProfileController extends BaseController
     public function showStudentProfile($id) {
         $user=user();
         $student = Student::where('id', $id['id'])->first();
+        $batch_id=Attendance::where('student_id', $id['id'])->first()['batch_id'];
 
-        $total=count(Attendance::where('student_id', $id['id'])->get());
+        $total=count(Attendance::where('batch_id', $batch_id)->groupBy('date_of_attd')->get());
         $present=count(Attendance::where([['student_id', $id['id']], ['status', 'present']])->get());
         $absent=$total-$present;
 

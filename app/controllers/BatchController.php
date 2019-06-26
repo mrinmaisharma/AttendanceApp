@@ -81,6 +81,17 @@ class BatchController extends BaseController
         return view('trainer/batches', [ 'batches'=>$batches ]);
     }
 
+    public function showEditBatchPage($id) {
+        $batch=Batch::where('id', $id[id])->first();
+        $start=new Carbon($batch['start_date']);
+        $batch['start_date']=$start->format("Y-m-d");
+        if($batch['end_date'] != null) {
+            $end = new Carbon($batch['end_date']);
+            $batch['end_date'] = $end->format("Y-m-d");
+        }
+        return view('app/edit-batch', [ 'batch'=>$batch ]);
+    }
+
     public function showBatches() {
         if(!isAuthenticated()) {
             Redirect::to('/');
