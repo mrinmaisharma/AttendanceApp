@@ -167,8 +167,8 @@ class BatchController extends BaseController
                 //process form data
                 Batch::create([
                     'name'=>$request->name,
-                    'start_date'=>Carbon::createFromFormat('Y-m-d h-i-s', $request->start_date.'00-00-00'),
-                    'end_date'=>($request->end_date == '') ? null : Carbon::createFromFormat('Y-m-d h-i-s', $request->end_date.'00-00-00')
+                    'start_date'=>Carbon::createFromFormat('Y-m-d h-i-s', $request->start_date.' 00-00-00'),
+                    'end_date'=>($request->end_date == '') ? null : Carbon::createFromFormat('Y-m-d h-i-s', $request->end_date.' 00-00-00')
                 ]);
                 
                 
@@ -180,8 +180,76 @@ class BatchController extends BaseController
         }
     }
 
-    public function edit() {
+    public function edit($id) {
+        if(!isAuthenticated()) {
+            Redirect::to('/');
+        }
+        else if(isAuthenticated()) {
+            $user=user();
+            if($user->role!='admin') {
+                Redirect::to('/');
+            }
+        }
 
+        if(Request::has('post')) {
+            $request=Request::get('post');
+            $errors=[];
+            $duplicate_error=[];
+            if(CSRFToken::verifyCSRFToken($request->token)) {
+                $rules=[
+                    'name'=>['required'=>true],
+                    'start_date'=>['required'=>true],
+                ];
+                
+                if(Batch::where([['name', $request->name], ['id', "<>", $id['id']]])->first()){
+                    $duplicate_error['duplictate']=['This name already exists.'];
+                }
+
+                $validate=new ValidateRequest;
+                $validate->abide($_POST, $rules);
+                if (!strtotime($request->start_date) ) {
+                    Session::add('error', 'Invalid Start Date format');
+                    Redirect::to('/batch/'.$id['id'].'/edit');
+                    exit;
+                }
+                if ($request->end_date != '' && !strtotime($request->end_date)) {
+                    Session::add('error', 'Invalid End Date format');
+                    Redirect::to('/batch/'.$id['id'].'/edit');
+                    exit;
+                }
+                if ($request->end_date != '' && (strtotime($request->start_date) > strtotime($request->end_date))) {
+                    Session::add('error', 'Start Date cannot be after End Date');
+                    Redirect::to('/batch/'.$id['id'].'/edit');
+                    exit;
+                }
+
+                if($validate->hasError() || !empty($duplicate_error)) {
+                    $response=$validate->getErrorMessages();
+                    count($duplicate_error) ? $errors=array_merge($response, $duplicate_error) : $errors=$response;
+                    $msg="";
+                    foreach($errors as $error) {
+                        foreach($error as $e) {
+                            $msg.=$e."<br/>";
+                        }
+                    }
+                    Session::add('error', $msg);
+                    Redirect::to('/batch/'.$id['id'].'/edit');
+                    exit;
+                }
+                //process form data
+                Batch::where('id', $id)->update([
+                    'name'=>$request->name,
+                    'start_date'=>Carbon::createFromFormat('Y-m-d h-i-s', $request->start_date.' 00-00-00'),
+                    'end_date'=>($request->end_date == '') ? null : Carbon::createFromFormat('Y-m-d h-i-s', $request->end_date.' 00-00-00')
+                ]);
+                
+                
+                Session::add('success', 'Batch updated');
+                Redirect::to('/master/batches');
+                exit;
+            }
+            throw new \Exception('Token mismatch');
+        }
     }
     
 }

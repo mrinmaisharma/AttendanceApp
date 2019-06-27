@@ -19,7 +19,7 @@
         <div class="col-md-8 offset-md-2">
             <div class="card">
                 <div class="card-body">
-                    <form action="/master/<?php echo e($batch['id']); ?>/edit" method="post">
+                    <form action="/batch/<?php echo e($batch['id']); ?>/edit" method="post">
                         <input type="hidden" name="token" value="<?php echo e(\App\CLasses\CSRFToken::_token()); ?>">
                         <div class="form-group row">
                             <label class="col-lg-4 col-form-label" for="batch_name">Batch Name <span class="text-danger">*</span>

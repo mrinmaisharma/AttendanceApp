@@ -35,7 +35,7 @@ class IndexController extends BaseController
         }
         $activeBatches = array();
         foreach($batches as $batch) {
-            if($batch['end_date'] == NULL) {
+            if($batch['end_date'] == NULL || (strtotime($batch['end_date']) >= strtotime(date("Y-m-d")." 00:00:00"))) {
                 array_push($activeBatches,$batch);
             }
         }
@@ -111,7 +111,7 @@ class IndexController extends BaseController
         }
         $activeBatches = array();
         foreach($batches as $batch) {
-            if($batch['end_date'] == NULL) {
+            if($batch['end_date'] == NULL || (strtotime($batch['end_date']) >= strtotime(date("Y-m-d")." 00:00:00"))) {
                 array_push($activeBatches,$batch);
             }
         }
