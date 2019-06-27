@@ -10,6 +10,7 @@ use App\Classes\ValidateRequest;
 use App\Classes\Mail;
 use App\Models\Student;
 use App\Models\Batch;
+use App\Models\User;
 
 class StudentController extends BaseController
 {

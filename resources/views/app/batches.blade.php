@@ -23,15 +23,63 @@
                     <div class="row">
                         <div class="col-12">
                             <span class="card-text pull-left d-inline"><small class="text-muted">Start Date: {{$batch['start_date']}}</small></span>
-                            <a href="#" class="badge badge-pill badge-primary pull-right" style="margin: 0.1rem 0;">View Details</a>
+                            <a href="#" class="badge badge-pill badge-primary pull-right" data-toggle="modal" data-target="#view-batch{{$batch['id']}}" style="margin: 0.1rem 0;">View Details</a>
                         </div>
                         <div class="col-12">
-                            <button type="button" class="btn mb-1 btn-rounded btn-outline-info" data-toggle="modal" data-target="#basicModal" style="margin-top:1em; font-size:0.8rem;">Assign Trainer</button>
+                            <button type="button" class="btn mb-1 btn-rounded btn-outline-info" data-toggle="modal" data-target="#assignTrainerModal{{$batch['id']}}" style="margin-top:1em; font-size:0.8rem;">Assign Trainer</button>
                             <a href="/master/student/add?batch_id={{$batch['id']}}" class="btn mb-1 btn-rounded btn-outline-primary float-right"style="margin-top:1em; font-size:0.8rem;">+ Students</a>
                         </div>
                     </div>
-                    <!-- Modal -->
-                    <div class="modal fade" id="basicModal" style="display: none;" aria-hidden="true">
+                    <!-- View Details Modal -->
+                    <div class="modal fade" id="view-batch{{$batch['id']}}" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
+                        <div class="modal-dialog modal-md">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" style="color:inherit;"><strong>{{$batch['name']}}</strong></h5>
+                                    <button type="button" class="close" data-dismiss="modal"><span>×</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body row">
+                                    <div class="col-11">
+                                        <table class="table" style="background-color: transparent;">
+                                            <tbody>
+                                                <tr>
+                                                    <td><strong>Name</strong></td>
+                                                    <td>{{$batch['name']}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Start date</strong></td>
+                                                    <td>{{$batch['start_date']}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>End Date</strong></td>
+                                                    @if($batch['end_date'] == null)
+                                                    <td>--</td>
+                                                    @else
+                                                    <?php
+                                                        $end = new \Carbon\Carbon($batch['end_date']);
+                                                        $batch['end_date'] = $end->format("Y-m-d"); 
+                                                     ?>
+                                                    <td>{{$batch['end_date']}}</td>
+                                                    @endif
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Trainer</strong></td>
+                                                    <td>{{($batch['trainer'] == null) ? '--' : $batch['trainer']->name}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="/batch/{{$batch['id']}}/edit" class="btn btn-warning">Edit</a>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Assign Trainer Modal -->
+                    <div class="modal fade" id="assignTrainerModal{{$batch['id']}}" style="display: none;" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <form action="/batch/{{$batch['id']}}/assign/trainer" method="post">
                                 <div class="modal-content">

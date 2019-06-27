@@ -50,16 +50,22 @@ class AttendanceController extends BaseController
         if(Request::has('post')) {
             $request=Request::get('post');
             $errors=[];
+            $date_error=[];
             if(CSRFToken::verifyCSRFToken($request->token)) {
                 $rules=[
                     'batch_id'=>['required'=>true],
                     'date_of_attd'=>['required'=>true],
                 ];
                 $validate=new ValidateRequest;
-                $validate->abide($_POST, $rules);
-                
-                if($validate->hasError()) {
-                    $errors=$validate->getErrorMessages();
+                $validate->abide($_POST, $rules);                
+
+                if(count(Attendance::where('date_of_attd', $request->date_of_attd)->get()) != 0) {
+                    $date_error['dateError'] = ['Attendance already marked'];
+                }
+
+                if($validate->hasError() || !empty($date_error)) {
+                    $response=$validate->getErrorMessages();
+                    count($date_error) ? $errors=array_merge($response, $date_error) : $errors=$response;
                     $msg="";
                     foreach($errors as $error) {
                         foreach($error as $e) {
@@ -67,7 +73,7 @@ class AttendanceController extends BaseController
                         }
                     }
                     Session::add('error', $msg);
-                    Redirect::to("/batches");
+                    Redirect::to("/batch/".$request->batch_id."/mark/attendance");
                     exit;
                 }
                 //process form data
