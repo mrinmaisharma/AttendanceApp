@@ -16,7 +16,8 @@
                 <label>
                     Date of Attendance
                     <div class="input-group">
-                        <input type="text" value="{{date('Y-m-d', time())}}" style="padding-left:1rem" autocomplete="off" class="form-control datepicker" name="date_of_attd" id="startDate" placeholder="yyyy-mm-dd" required>
+                        <input type="text" value="{{date('Y-m-d', time())}}" style="padding-left:1rem" autocomplete="off" 
+                        class="form-control datepicker" name="date_of_attd" placeholder="yyyy-mm-dd" required>
                         <span class="input-group-append">
                             <span class="input-group-text">
                                 <i class="mdi mdi-calendar-check"></i>

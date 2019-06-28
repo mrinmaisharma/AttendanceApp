@@ -82,7 +82,7 @@ class BatchController extends BaseController
     }
 
     public function showEditBatchPage($id) {
-        $batch=Batch::where('id', $id[id])->first();
+        $batch=Batch::where('id', $id['id'])->first();
         $start=new Carbon($batch['start_date']);
         $batch['start_date']=$start->format("Y-m-d");
         if($batch['end_date'] != null) {
@@ -247,6 +247,36 @@ class BatchController extends BaseController
                 Session::add('success', 'Batch updated');
                 Redirect::to('/master/batches');
                 exit;
+            }
+            throw new \Exception('Token mismatch');
+        }
+    }
+
+    public function delete($id) {
+        if(!isAuthenticated()) {
+            Redirect::to('/');
+        }
+        else if(isAuthenticated()) {
+            $user=user();
+            if($user->role!='admin') {
+                Redirect::to('/');
+            }
+        }
+        if(Request::has('post')) {
+            $request=Request::get('post');
+            
+            if(CSRFToken::verifyCSRFToken($request->token)) {
+                Batch::destroy($id);
+                
+                $students=Student::where('batch_id', $id['id'])->get();
+                if(count($students)) {
+                    foreach($students as $student) {
+                        $student->delete();
+                    }
+                }
+
+                Session::add('success', 'Batch Deleted');
+                Redirect::to('/master/batches');
             }
             throw new \Exception('Token mismatch');
         }

@@ -166,6 +166,22 @@ class TrainerController extends BaseController
         return view('app/add-trainer');
     }
 
+    
+    public function showEditTrainerPage($id) {
+        if(!isAuthenticated()) {
+            Redirect::to('/');
+        }
+        else if(isAuthenticated()) {
+            $user=user();
+            if($user->role!='admin') {
+                Redirect::to('/');
+            }
+        }
+        $trainer=Trainer::where('id', $id['id'])->first();
+        
+        return view('app/edit-trainer', [ 'trainer'=>$trainer ]);
+    }
+
     public function create() {
         if(!isAuthenticated()) {
             Redirect::to('/');
@@ -183,7 +199,7 @@ class TrainerController extends BaseController
             if(CSRFToken::verifyCSRFToken($request->token)) {
                 $rules=[
                     'name'=>['required'=>true],
-                    'username'=>['required'=>true, "unique"=>"trainers"],
+                    'username'=>['required'=>true, "unique"=>"users"],
                     'phn_number'=>['required'=>true],
                     'email'=>['required'=>true],
                 ];
@@ -229,6 +245,117 @@ class TrainerController extends BaseController
             throw new \Exception('Token mismatch');
         }
     }
+
+    public function edit($id) {
+        if(!isAuthenticated()) {
+            Redirect::to('/');
+        }
+        else if(isAuthenticated()) {
+            $user=user();
+            if($user->role!='admin') {
+                Redirect::to('/');
+            }
+        }
+
+        if(Request::has('post')) {
+            $request=Request::get('post');
+            $errors=[];
+            $duplicate_error=[];
+            if(CSRFToken::verifyCSRFToken($request->token)) {
+                $rules=[
+                    'name'=>['required'=>true],
+                    'username'=>['required'=>true],
+                    'phn_number'=>['required'=>true],
+                    'email'=>['required'=>true]
+                ];
+                
+                $oldUserName=Trainer::where('id', $id)->first()['username'];
+                if($oldUserName != $request->username) {
+                    if(User::where('username', $request->username)->first()){
+                        $duplicate_error['duplictate']=['This username is already taken.'];
+                    }
+                }
+
+                $validate=new ValidateRequest;
+                $validate->abide($_POST, $rules);
+
+                if($validate->hasError() || !empty($duplicate_error)) {
+                    $response=$validate->getErrorMessages();
+                    count($duplicate_error) ? $errors=array_merge($response, $duplicate_error) : $errors=$response;
+                    $msg="";
+                    foreach($errors as $error) {
+                        foreach($error as $e) {
+                            $msg.=$e."<br/>";
+                        }
+                    }
+                    Session::add('error', $msg);
+                    Redirect::to('/trainer/'.$id['id'].'/edit');
+                    exit;
+                }
+                //process form data
+                
+                if($oldUserName != $request->username){
+                    Trainer::where('id', $id)->update([
+                        'name'=>$request->name,
+                        'username'=>$request->username,
+                        'phn_number'=>$request->phn_number,
+                        'whatsapp_number'=>($request->whatsapp_number == '') ? null : $request->whatsapp_number,
+                        'email'=>$request->email,
+                        'address'=>($request->address == '') ? null : $request->address,
+                        'city'=>($request->city == '') ? null : $request->city,
+                        'state'=>($request->state == '') ? null : $request->state,
+                        'pincode'=>($request->pincode == '') ? null : $request->pincode
+                    ]);
+
+                    User::where('username', $oldUserName)->update([
+                        'username'=>$request->username
+                    ]);
+                }
+                else {
+                    Trainer::where('id', $id)->update([
+                        'name'=>$request->name,
+                        'phn_number'=>$request->phn_number,
+                        'whatsapp_number'=>($request->whatsapp_number == '') ? null : $request->whatsapp_number,
+                        'email'=>$request->email,
+                        'address'=>($request->address == '') ? null : $request->address,
+                        'city'=>($request->city == '') ? null : $request->city,
+                        'state'=>($request->state == '') ? null : $request->state,
+                        'pincode'=>($request->pincode == '') ? null : $request->pincode
+                    ]);
+                }
+                
+                
+                Session::add('success', 'Trainer updated');
+                Redirect::to('/master/trainers');
+                exit;
+            }
+            throw new \Exception('Token mismatch');
+        }
+    }
+
+    public function delete($id) {
+        if(!isAuthenticated()) {
+            Redirect::to('/');
+        }
+        else if(isAuthenticated()) {
+            $user=user();
+            if($user->role!='admin') {
+                Redirect::to('/');
+            }
+        }
+        if(Request::has('post')) {
+            $request=Request::get('post');
+            
+            if(CSRFToken::verifyCSRFToken($request->token)) {
+                Trainer::destroy($id);
+                
+                Session::add('success', 'Trainer Deleted');
+                Redirect::to('/master/trainers');
+            }
+            throw new \Exception('Token mismatch');
+        }
+    }
+
 }
 
 ?>

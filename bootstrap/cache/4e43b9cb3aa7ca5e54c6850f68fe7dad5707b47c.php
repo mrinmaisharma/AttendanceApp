@@ -19,6 +19,11 @@
                     <i class="icon-graduation"></i><span class="nav-text">My Students</span>
                 </a>
             </li>
+            <li>
+                <a href="/view/attendance" aria-expanded="false">
+                    <i class="icon-list"></i><span class="nav-text">View Attendance</span>
+                </a>
+            </li>
         </ul>
     </div>
 </div>
