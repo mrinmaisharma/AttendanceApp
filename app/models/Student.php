@@ -14,6 +14,10 @@ class Student extends Model
     protected $fillable=['username', 'batch_id', 'name', 'phn_number', 'whatsapp_number', 'email', 'institute', 'address', 'city', 'state', 'pincode'];
     protected $dates=['deleted_at'];
     
+    public function attendances() {
+        return $this->hasMany(Attendance::class);
+    }
+
     public function transform($data) {
         $students=[];
         foreach($data as $item) {

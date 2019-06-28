@@ -14,6 +14,9 @@
                         <div class="card-body pt-5">
                             <a class="text-center" href="index.html"> <h4>Nextwing infotech</h4></a>
                             <form id="login-form" class="mt-5 mb-5 login-input" data-token="{{\App\Classes\CSRFToken::_token()}}">
+                                <div class="col-md-12">
+                                    @include('includes.form_alert')
+                                </div>
                                 <div class="text-center" style="display:none;" id="login_loader"><img style="height:20px;resize:both;" src="/images/loader.gif" alt="please wait..."></div>
                                 <div class="notification alert alert-success" style="display:none" id="login_notification" role="alert">
 

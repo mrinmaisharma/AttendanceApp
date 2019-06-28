@@ -14,6 +14,14 @@ class Attendance extends Model
     protected $fillable=['batch_id', 'student_id', 'date_of_attd', 'status'];
     protected $dates=['deleted_at'];
     
+    public function student() {
+        return $this->belongsTo(Student::class);
+    }
+
+    public function batch() {
+        return $this->belongsTo(Batch::class);
+    }
+
     public function transform($data) {
         $records=[];
         foreach($data as $item) {

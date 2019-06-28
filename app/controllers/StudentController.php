@@ -10,6 +10,7 @@ use App\Classes\ValidateRequest;
 use App\Classes\Mail;
 use App\Models\Student;
 use App\Models\Batch;
+use App\Models\User;
 
 class StudentController extends BaseController
 {
@@ -68,6 +69,12 @@ class StudentController extends BaseController
         return view('app/add-student', ['batch'=>$batch]);
     }
 
+    public function showEditStudentPage($id) {
+        $student=Student::where('id', $id['id'])->first();
+        
+        return view('app/edit-student', [ 'student'=>$student ]);
+    }
+
     public function create() {
         if(!isAuthenticated()) {
             Redirect::to('/');
@@ -85,7 +92,7 @@ class StudentController extends BaseController
             if(CSRFToken::verifyCSRFToken($request->token)) {
                 $rules=[
                     'name'=>['required'=>true],
-                    'username'=>['required'=>true, "unique"=>"trainers"],
+                    'username'=>['required'=>true, "unique"=>"students"],
                     'phn_number'=>['required'=>true],
                     'email'=>['required'=>true],
                     'batch_id'=>['required'=>true],
@@ -126,6 +133,99 @@ class StudentController extends BaseController
                 Session::add('success', 'Student Added');
                 Redirect::to('/master/students');
                 exit;
+            }
+            throw new \Exception('Token mismatch');
+        }
+    }
+
+    
+    public function edit($id) {
+        if(!isAuthenticated()) {
+            Redirect::to('/');
+        }
+        else if(isAuthenticated()) {
+            $user=user();
+            if($user->role!='admin') {
+                Redirect::to('/');
+            }
+        }
+
+        if(Request::has('post')) {
+            $request=Request::get('post');
+            $errors=[];
+            $duplicate_error=[];
+            if(CSRFToken::verifyCSRFToken($request->token)) {
+                $rules=[
+                    'name'=>['required'=>true],
+                    'username'=>['required'=>true],
+                    'phn_number'=>['required'=>true],
+                    'email'=>['required'=>true],
+                    'batch_id'=>['required'=>true],
+                    'institute'=>['required'=>true]
+                ];
+                
+                if(Student::where([['username', $request->username], ['id', "<>", $id['id']]])->first()){
+                    $duplicate_error['duplictate']=['This username is already taken.'];
+                }
+
+                $validate=new ValidateRequest;
+                $validate->abide($_POST, $rules);
+
+                if($validate->hasError() || !empty($duplicate_error)) {
+                    $response=$validate->getErrorMessages();
+                    count($duplicate_error) ? $errors=array_merge($response, $duplicate_error) : $errors=$response;
+                    $msg="";
+                    foreach($errors as $error) {
+                        foreach($error as $e) {
+                            $msg.=$e."<br/>";
+                        }
+                    }
+                    Session::add('error', $msg);
+                    Redirect::to('/student/'.$id['id'].'/edit');
+                    exit;
+                }
+                //process form data
+                Student::where('id', $id)->update([
+                    'name'=>$request->name,
+                    'username'=>$request->username,
+                    'phn_number'=>$request->phn_number,
+                    'whatsapp_number'=>($request->whatsapp_number == '') ? null : $request->whatsapp_number,
+                    'email'=>$request->email,
+                    'batch_id'=>$request->batch_id,
+                    'institute'=>$request->institute,
+                    'address'=>($request->address == '') ? null : $request->address,
+                    'city'=>($request->city == '') ? null : $request->city,
+                    'state'=>($request->state == '') ? null : $request->state,
+                    'pincode'=>($request->pincode == '') ? null : $request->pincode
+                ]);
+                
+                
+                Session::add('success', 'Student updated');
+                Redirect::to('/master/students');
+                exit;
+            }
+            throw new \Exception('Token mismatch');
+        }
+    }
+
+    public function delete($id) {
+        if(!isAuthenticated()) {
+            Redirect::to('/');
+        }
+        else if(isAuthenticated()) {
+            $user=user();
+            if($user->role!='admin') {
+                Redirect::to('/');
+            }
+        }
+        if(Request::has('post')) {
+            $request=Request::get('post');
+            
+            if(CSRFToken::verifyCSRFToken($request->token)) {
+                Student::destroy($id);
+                
+                Session::add('success', 'Student Deleted');
+                Redirect::to('/master/students');
             }
             throw new \Exception('Token mismatch');
         }

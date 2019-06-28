@@ -14,6 +14,10 @@ class Batch extends Model
     protected $fillable=['name', 'start_date', 'end_date', 'trainer_id'];
     protected $dates=['deleted_at'];
     
+    public function attendances() {
+        return $this->hasMany(Attendance::class);
+    }
+
     public function transform($data) {
         $batches=[];
         foreach($data as $item) {

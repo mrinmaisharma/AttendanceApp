@@ -5,6 +5,9 @@
 
 <div class="container-fluid">
     <div class="row">
+        <div class="col-md-12">
+            <?php echo $__env->make('includes.form_alert', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        </div>    
         <div class="col-lg-4">
             <div class="card">
                 <div class="card-body">
@@ -41,7 +44,7 @@
                             <br>
                         </div>
                         <div class="col-12 text-center">
-                            <button class="btn btn-danger px-5">Edit Profile</button>
+                            <a href="/trainer/profile/<?php echo e($trainer['id']); ?>/edit" class="btn btn-danger px-5">Edit Profile</a>
                         </div>
                     </div>
                 </div>
@@ -76,27 +79,32 @@
             </div>
             <div class="card">
                 <div class="card-body">
-                    <form action="/password/reset" method="post">
+                    <form action="/change/password" method="post">
+                        <input type="hidden" name="token" value="<?php echo e(\App\Classes\CSRFToken::_token()); ?>">
+                        <input type="hidden" name="username" value="<?php echo e($trainer['username']); ?>">
                         <h4 style="color: inherit;"><strong>Change Password</strong></h4>
                         <div class="form-group row">
                             <label class="col-lg-4 col-form-label" for="val-old-password">Current Password <span class="text-danger">*</span>
                             </label>
                             <div class="col-lg-6">
-                                <input type="password" class="form-control" name="oldPassword" required placeholder="Enter your current password.">
+                                <input type="password" class="form-control" name="oldPassword" pattern="((?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$)"
+                                title="UpperCase, LowerCase, Number/SpecialChar and min 6 Chars." minlength="6" required placeholder="Enter your current password.">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-lg-4 col-form-label" for="val-password">New Password <span class="text-danger">*</span>
                             </label>
                             <div class="col-lg-6">
-                                <input type="password" class="form-control" name="val-password" required placeholder="Choose a safe one..">
+                                <input type="password" class="form-control" name="newPassword" pattern="((?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$)"
+                                title="UpperCase, LowerCase, Number/SpecialChar and min 6 Chars." minlength="6" required placeholder="Choose a safe one..">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-lg-4 col-form-label" for="val-confirm-password">Confirm Password <span class="text-danger">*</span>
                             </label>
                             <div class="col-lg-6">
-                                <input type="password" class="form-control" name="confirmPassword" required placeholder="Confirm new password">
+                                <input type="password" class="form-control" name="confirmPassword" pattern="((?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$)"
+                                title="UpperCase, LowerCase, Number/SpecialChar and min 6 Chars." minlength="6" required placeholder="Confirm new password">
                             </div>
                         </div>
                         <div class="form-group row">
