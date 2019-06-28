@@ -1,44 +1,116 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="h-100" lang="en">
 
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-
-	<title>404 Page Not Found | Console Flare</title>
-
-	<!-- Google font -->
-	<link href="https://fonts.googleapis.com/css?family=Montserrat:700,900" rel="stylesheet">
-
-	<!-- Custom stlylesheet -->
-	<link type="text/css" rel="stylesheet" href="/extraCSS/404.css" />
-
-	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-	<!--[if lt IE 9]>
-		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
-
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Page Not Found | Attendance Portal</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+    <link href="/css/style.css" rel="stylesheet">
+    
 </head>
 
-<body>
+<body class="h-100">
+    
+    <!--*******************
+        Preloader start
+    ********************-->
+    <div id="preloader">
+        <div class="loader">
+            <svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+            </svg>
+        </div>
+    </div>
+    <!--*******************
+        Preloader end
+    ********************-->
 
-	<div id="notfound">
-		<div class="notfound">
-		    <div style="text-align:center">
-		        <img style="height:50px;resize:both;max-width:100%;" src="https://i.ibb.co/s3W72yp/cf-logo2.png" alt="cf-logo2" border="0">
-		    </div>
-			<div class="notfound-404">
-				<h1>404</h1>
-				<h2>Page not found</h2>
-			</div>
-			<a href="/">Homepage</a>
-		</div>
-	</div>
 
-</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 
+    <div class="login-form-bg h-100">
+        <div class="container h-100">
+            <div class="row justify-content-center h-100">
+                <div class="col-xl-6">
+                    <div class="error-content">
+                        <div class="card mb-0">
+                            <div class="card-body text-center pt-5">
+                                <h1 class="error-text text-primary">404</h1>
+                                <h4 class="mt-4"><i class="fa fa-thumbs-down text-danger"></i> Bad Request</h4>
+                                <p>Your Request resulted in an error.</p>
+                                <form class="mt-5 mb-5">
+                                    
+                                    <div class="text-center mb-4 mt-4"><a href="/" class="btn btn-primary">Go to Homepage</a>
+                                    </div>
+                                </form>
+                                <div class="text-center">
+                                    <p>Copyright © Designed and Developed by <a href="https://www.arbre.in">Arbre Creations</a> 2019</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    
+
+
+
+    <!-- <div class="error-bg h-100">
+        <div class="container h-100">
+            <div class="row justify-content-center h-100">
+                <div class="col-xl-6">
+                    <div class="error-content">
+                        <div class="card mb-0">
+                            <div class="card-body text-center">
+                                <h1 class="error-text text-primary">400</h1>
+                                <h4 class="mt-4"><i class="fa fa-thumbs-down text-danger"></i> Bad Request</h4>
+                                <p>Your Request resulted in an error.</p>
+                                <form class="mt-5 mb-5">
+                                    
+                                    <div class="text-center mb-4 mt-4"><a href="index.html" class="btn btn-primary">Go to Homepage</a>
+                                    </div>
+                                </form>
+                                <div class="text-center">
+                                    <p>Copyright © Designed by <a href="https://themeforest.net/user/digitalheaps">Digitalheaps</a>, Developed by <a href="https://themeforest.net/user/quixlab">Quixlab</a> 2018</p>
+                                    <ul class="list-inline">
+                                        <li class="list-inline-item"><a href="javascript:void()" class="btn btn-facebook"><i class="fa fa-facebook"></i></a>
+                                        </li>
+                                        <li class="list-inline-item"><a href="javascript:void()" class="btn btn-twitter"><i class="fa fa-twitter"></i></a>
+                                        </li>
+                                        <li class="list-inline-item"><a href="javascript:void()" class="btn btn-linkedin"><i class="fa fa-linkedin"></i></a>
+                                        </li>
+                                        <li class="list-inline-item"><a href="javascript:void()" class="btn btn-google-plus"><i class="fa fa-google-plus"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <script src="/plugins/common/common.min.js"></script>
+    <script src="/js/custom.min.js"></script>
+    <script src="/js/settings.js"></script>
+    <script src="/js/gleek.js"></script>
+    <script src="/js/styleSwitcher.js"></script>
+</body>
 </html>
+
+
+
+
+
